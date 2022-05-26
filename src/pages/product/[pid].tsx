@@ -185,7 +185,8 @@ const ProductPage = () => {
                 <h3>
                   {/*@ts-ignore */}
                   {title.length === 0
-                    ? /*@ts-ignore */ setTitle(CourseInfo[0].description)
+                    ? /*@ts-ignore */
+                      setTitle(CourseInfo[0].description)
                     : title}
                 </h3>
                 <h3>
