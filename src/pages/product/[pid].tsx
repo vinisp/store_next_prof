@@ -172,7 +172,7 @@ const ProductPage = () => {
                 </button>
               </div>
               <div className="mt-5">
-                <h3>1</h3>
+                <h3>12</h3>
                 <h3>2</h3>
 
                 <h3>3</h3>
