@@ -20,7 +20,7 @@ const Index = ({ dados }: any) => (
                     type="button"
                     className={`${styles.CustombtnBuy} btn-success`}
                   >
-                    Comprar
+                    Comprars
                   </button>
                   <button
                     type="button"
