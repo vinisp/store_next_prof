@@ -1,4 +1,4 @@
-import styles from "styles/Home.module.css";
+import styles from '../../styles/Home.module.css'
 
 const GridProducts = () => {
   return (
@@ -179,7 +179,7 @@ const GridProducts = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default GridProducts;
+export default GridProducts
