@@ -1,65 +1,32 @@
-import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import Img2 from 'assets/img/2.jpg'
 import Link from 'next/link'
-import { useState } from 'react'
+import axios from 'axios'
 
-const ProductPage = () => {
-  const [title, setTitle] = useState<string>()
-  const [text, setText] = useState<string>()
-  const [title2, setTitle2] = useState<string>()
-  const [text2, setText2] = useState<string>()
-  const [title3, setTitle3] = useState<string>()
-  const [text3, setText3] = useState<string>()
-  const router = useRouter()
-  const { pid } = router.query
+const ProductPage = ({ dados }: any) => {
+  console.log(dados)
 
-  const CourseInfo = [
-    {
-      description: 'Descrição',
-      descriptionText: 'texto de descrição'
-    },
-    {
-      specification1: 'Especificação1',
-      specificationText1: 'Texto de especificacao1'
-    },
-    {
-      specification2: 'Especificação2',
-      specificationText2: 'Texto de especificacao2'
-    },
-    {
-      specification3: 'Especificação3',
-      specificationText3: 'Texto de especificacao'
-    }
-  ]
+  const DetailsInfo = () => {
+    return (
+      <>
+        <div className="mt-5">
+          <h3>{dados[0].name}</h3>
+          <h3>{dados[0].main_resume}</h3>
+          <h4>{dados[0].level} </h4>
+          <span>
+            <sup> R$ </sup> {dados[0].price}
+          </span>
 
-  const Description = () => {
-    setTitle(CourseInfo[0].description)
+          <hr />
 
-    setText(CourseInfo[0].descriptionText)
+          <span>{dados[0].mais_detalhes}</span>
 
-    setTitle2('')
-
-    setText2('')
-
-    setTitle3('')
-
-    setText3('')
-  }
-
-  const Details = () => {
-    setTitle(CourseInfo[1].specification1)
-
-    setText(CourseInfo[1].specificationText1)
-
-    setTitle2(CourseInfo[2].specification2)
-
-    setText2(CourseInfo[2].specificationText2)
-
-    setTitle3(CourseInfo[3].specification3)
-
-    setText3(CourseInfo[3].specificationText3)
+          <h3> {dados[0].titulo_competencia_um}</h3>
+          <h3> {dados[0].text_competencia_um}</h3>
+        </div>
+      </>
+    )
   }
 
   return (
@@ -163,25 +130,8 @@ const ProductPage = () => {
                 </span>
               </div>
               <hr className="mt-2 mb-2" />
-              <div style={{ display: 'flex', gap: '15px' }}>
-                <button className="btn btn-success" onClick={Description}>
-                  Descrição do Curso
-                </button>
-                <button className="btn btn-outline-secondary" onClick={Details}>
-                  Detalhesss
-                </button>
-              </div>
-              <div className="mt-5">
-                <h3>12</h3>
-                <h3>2</h3>
 
-                <h3>3</h3>
-
-                <p>{text2?.length === 0 ? false : text2}</p>
-                <h3>{title3?.length === 0 ? false : title3}</h3>
-
-                <p>{text3?.length === 0 ? false : text3}</p>
-              </div>
+              {DetailsInfo()}
               <hr className="mt-12 mb-12" />
               <div className="row">
                 <button className="btn btn-success">Comprar</button>
@@ -193,4 +143,17 @@ const ProductPage = () => {
     </>
   )
 }
+
+ProductPage.getInitialProps = async (context: any) => {
+  try {
+    const { data } = await axios.get(
+      `https://deppback.herokuapp.com/course/${context.query.pid}`
+    )
+
+    return { dados: data }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export default ProductPage
