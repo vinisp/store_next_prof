@@ -6,12 +6,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 const ProductPage = () => {
-  const [title, setTitle] = useState<string>('')
-  const [text, setText] = useState<string>('')
-  const [title2, setTitle2] = useState<string>('')
-  const [text2, setText2] = useState<string>('')
-  const [title3, setTitle3] = useState<string>('')
-  const [text3, setText3] = useState<string>('')
+  const [title, setTitle] = useState<string>()
+  const [text, setText] = useState<string>()
+  const [title2, setTitle2] = useState<string>()
+  const [text2, setText2] = useState<string>()
+  const [title3, setTitle3] = useState<string>()
+  const [text3, setText3] = useState<string>()
   const router = useRouter()
   const { pid } = router.query
 
@@ -35,40 +35,30 @@ const ProductPage = () => {
   ]
 
   const Description = () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
     setTitle(CourseInfo[0].description)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
+
     setText(CourseInfo[0].descriptionText)
 
     setTitle2('')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     setText2('')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     setTitle3('')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     setText3('')
   }
 
   const Details = () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
     setTitle(CourseInfo[1].specification1)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
+
     setText(CourseInfo[1].specificationText1)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
+
     setTitle2(CourseInfo[2].specification2)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
+
     setText2(CourseInfo[2].specificationText2)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
+
     setTitle3(CourseInfo[3].specification3)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /*@ts-ignore */
+
     setText3(CourseInfo[3].specificationText3)
   }
 
@@ -182,39 +172,15 @@ const ProductPage = () => {
                 </button>
               </div>
               <div className="mt-5">
-                <h3>
-                  {/*@ts-ignore */}
-                  {title.length === 0
-                    ? /*@ts-ignore */
-                      setTitle(CourseInfo[0].description)
-                    : title}
-                </h3>
-                <h3>
-                  {/*@ts-ignore */}
-                  {text.length === 0
-                    ? /*@ts-ignore */
-                      setText(CourseInfo[0].descriptionText)
-                    : text}
-                </h3>
+                <h3>1</h3>
+                <h3>2</h3>
 
-                <h3>
-                  {/*@ts-ignore */}
-                  {title2.length === 0 ? false : title2}
-                </h3>
-                {/*@ts-ignore */}
-                <p>
-                  {/*@ts-ignore */}
-                  {text2.length === 0 ? false : text2}
-                </p>
-                <h3>
-                  {/*@ts-ignore */}
-                  {title3.length === 0 ? false : title3}
-                </h3>
-                {/*@ts-ignore */}
-                <p>
-                  {/*@ts-ignore */}
-                  {text3.length === 0 ? false : text3}
-                </p>
+                <h3>3</h3>
+
+                <p>{text2?.length === 0 ? false : text2}</p>
+                <h3>{title3?.length === 0 ? false : title3}</h3>
+
+                <p>{text3?.length === 0 ? false : text3}</p>
               </div>
               <hr className="mt-12 mb-12" />
               <div className="row">
