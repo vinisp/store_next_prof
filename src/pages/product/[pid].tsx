@@ -178,7 +178,7 @@ const ProductPage = () => {
                   Descrição do Curso
                 </button>
                 <button className="btn btn-outline-secondary" onClick={Details}>
-                  Detalhe
+                  Detalhesss
                 </button>
               </div>
               <div className="mt-5">
