@@ -1,6 +1,6 @@
 import { createContext, useContext, Dispatch, SetStateAction } from 'react'
 
-import { ModalProps } from 'pages/checkout'
+import { ModalProps } from 'pages/checkout/[cid]'
 
 type WithChildren = { children?: React.ReactNode }
 type ProviderProps = WithChildren & ContextProps

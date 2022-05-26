@@ -24,6 +24,7 @@ const Index = ({ dados }: any) => {
                     <button
                       type="button"
                       className={`${styles.CustombtnBuy} btn-success`}
+                      onClick={() => router.push(`/checkout/${e.course_id}`)}
                     >
                       Comprar
                     </button>

@@ -3,7 +3,7 @@ import gsap from 'gsap'
 
 import * as S from './styles'
 
-import { ModalProps } from 'pages/checkout'
+import { ModalProps } from 'pages/checkout/[cid]'
 
 type OverloadProps = {
   useModal: ModalProps

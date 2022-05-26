@@ -1,7 +1,9 @@
-import { useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 import axios from 'axios'
+
+import { useRouter } from 'next/router'
 
 import { SnapshotModal } from 'contexts/Index'
 import {
@@ -37,7 +39,8 @@ type FormSubmitProps = (data: {
   email?: string
 }) => Promise<FormSubmitThenProps>
 
-function FormPayment() {
+const FormPayment = () => {
+  const [price, getPrice] = useState<number>(0)
   const clickRef = useRef(true)
   const { useSection, setSection } = SnapshotSection()
   const { setOpacity } = SnapshotOpacity()
@@ -56,6 +59,25 @@ function FormPayment() {
     issuer,
     slt_installment = 1
   } = useProfile
+
+  const route = useRouter()
+
+  const GetPrice = async () => {
+    const query = route.query.cid
+
+    useEffect(() => {
+      query
+        ? axios
+            .get(`https://deppback.herokuapp.com/course/${query}`)
+            .then((response) => getPrice(response.data[0].price))
+            .catch((err) => console.error(err))
+        : console.log(false)
+
+      return console.log(`https://deppback.herokuapp.com/course/${query}`)
+    }, [query])
+  }
+
+  GetPrice()
 
   const inputFn: InputProps = (data, val) =>
     setProfile((prevState) =>
@@ -101,7 +123,7 @@ function FormPayment() {
           console.log({
             token: response.id,
             payment_method_id: issuer,
-            transaction_amount: 99.9,
+            transaction_amount: price,
             description: 'Playlist do youtube',
             installments: slt_installment,
             email: e_mail
@@ -110,7 +132,7 @@ function FormPayment() {
           formSubmit({
             token: response.id,
             payment_method_id: issuer,
-            transaction_amount: 99.9,
+            transaction_amount: price,
             description: 'Playlist do youtube',
             installments: slt_installment,
             email: e_mail

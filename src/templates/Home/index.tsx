@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 
 import ElementProvider from 'contexts/Checkout'
 
-import Header from 'components/Header'
 import StepBox from 'components/StepBox'
 import Checkout from 'components/Checkout'
 import Info from 'components/Info'
@@ -120,7 +119,6 @@ function TemplateHome() {
 
   return (
     <S.Wrapper>
-      <Header />
       <S.Content>
         <S.Main>
           <ElementProvider
