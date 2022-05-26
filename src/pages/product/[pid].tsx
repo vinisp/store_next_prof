@@ -146,7 +146,7 @@ const ProductPage = () => {
               <span>
                 Criado por
                 <Link href="/username">
-                  <a> Nome do produtor</a>
+                  <a> Nome do produtors</a>
                 </Link>
               </span>
               <div>
