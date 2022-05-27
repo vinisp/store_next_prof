@@ -132,7 +132,7 @@ const FormPayment = () => {
           formSubmit({
             token: response.id,
             payment_method_id: issuer,
-            transaction_amount: price,
+            transaction_amount: +price,
             description: 'Playlist do youtube',
             installments: slt_installment,
             email: e_mail
@@ -288,7 +288,10 @@ const FormPayment = () => {
 
       <S.Group>
         <S.Select maxWidth="130px">
-          <select id="docType" data-checkout="docType" />
+          <select id="docType" data-checkout="docType">
+            <option value="CPF">CPF</option>
+            <option value="CNPJ">CPNJ</option>
+          </select>
         </S.Select>
 
         <S.Flex>
