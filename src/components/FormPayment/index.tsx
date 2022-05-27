@@ -41,11 +41,14 @@ type FormSubmitProps = (data: {
 
 const FormPayment = () => {
   const [price, getPrice] = useState<number>(0)
+  const cardNumberRef = useRef(false)
+  // const { card_number = '', issuer } = useProfile
+  const [courseId, getCourseId] = useState<string>('')
   const clickRef = useRef(true)
   const { useSection, setSection } = SnapshotSection()
   const { setOpacity } = SnapshotOpacity()
   const { setModal } = SnapshotModal()
-  const { useInstallments } = SnapshotInstallments()
+  // const { useInstallments } = SnapshotInstallments()
   const { setCard } = SnapshotCard()
   const { formRef } = SnapshotRef()
   const { useProfile, setProfile } = SnapshotProfile()
@@ -55,11 +58,17 @@ const FormPayment = () => {
     card_year = '',
     code = '',
     doc = '',
-    e_mail,
+    e_mail = '',
     issuer,
     slt_installment = 1
   } = useProfile
 
+  const [useInstallments, setInstallments] = useState([
+    {
+      installments: 1,
+      recommended_message: 'Parcelas'
+    }
+  ])
   const route = useRouter()
 
   const GetPrice = async () => {
@@ -69,7 +78,10 @@ const FormPayment = () => {
       query
         ? axios
             .get(`https://deppback.herokuapp.com/course/${query}`)
-            .then((response) => getPrice(response.data[0].price))
+            .then((response) => {
+              getPrice(response.data[0].price)
+              getCourseId(response.data[0].course_id)
+            })
             .catch((err) => console.error(err))
         : console.log(false)
 
@@ -78,6 +90,68 @@ const FormPayment = () => {
   }
 
   GetPrice()
+
+  const GetStaltments = () => {
+    useEffect(() => {
+      if (cardNumberRef.current) {
+        if (card_number || (!card_number && issuer)) {
+          // recebe o nome do cartão antecipado
+          if (card_number.length > 5 && !issuer) {
+            const bin = card_number.substring(0, 6)
+            window.Mercadopago.getPaymentMethod({ bin }, (status, response) => {
+              if (status === 200) {
+                setProfile((prevState) => {
+                  const assoc = { ...prevState }
+                  assoc.issuer = response[0].id
+                  return assoc
+                })
+              } else {
+                console.log('error:', response)
+              }
+            })
+
+            window.Mercadopago.getInstallments(
+              { bin, amount: price },
+              function (status, response) {
+                if (status === 200) {
+                  setInstallments(
+                    response[0].payer_costs.map(
+                      ({ recommended_message, installments }) => {
+                        return {
+                          recommended_message,
+                          installments
+                        }
+                      }
+                    )
+                  )
+                } else {
+                  console.log('error:', response)
+                }
+              }
+            )
+          } else {
+            if (card_number.length < 6 && issuer) {
+              setInstallments([
+                {
+                  installments: 1,
+                  recommended_message: 'Parcelas'
+                }
+              ])
+              setProfile((prevState) => {
+                const assoc = { ...prevState }
+                delete assoc.issuer
+                return assoc
+              })
+            }
+          }
+        }
+      } else {
+        cardNumberRef.current = true
+      }
+    }, [card_number])
+  }
+
+  GetStaltments()
 
   const inputFn: InputProps = (data, val) =>
     setProfile((prevState) =>
@@ -119,21 +193,11 @@ const FormPayment = () => {
       window.Mercadopago.createToken(formRef.current, (status, response) => {
         if (status === 200 || status === 201) {
           setModal({ status: true })
-
-          console.log({
-            token: response.id,
-            payment_method_id: issuer,
-            transaction_amount: price,
-            description: 'Playlist do youtube',
-            installments: slt_installment,
-            email: e_mail
-          })
-
           formSubmit({
             token: response.id,
             payment_method_id: issuer,
             transaction_amount: +price,
-            description: 'Playlist do youtube',
+            description: courseId,
             installments: slt_installment,
             email: e_mail
           })
