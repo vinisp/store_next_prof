@@ -3,9 +3,10 @@ import Image from 'next/image'
 import Img2 from 'assets/img/2.jpg'
 import Link from 'next/link'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const ProductPage = ({ dados }: any) => {
-  console.log(dados)
+  const router = useRouter()
 
   const DetailsInfo = () => {
     return (
@@ -134,7 +135,12 @@ const ProductPage = ({ dados }: any) => {
               {DetailsInfo()}
               <hr className="mt-12 mb-12" />
               <div className="row">
-                <button className="btn btn-success">Comprar</button>
+                <button
+                  className="btn btn-success"
+                  onClick={() => router.push(`/checkout/${dados[0].course_id}`)}
+                >
+                  Comprar
+                </button>
               </div>
             </div>
           </div>
