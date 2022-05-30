@@ -6,11 +6,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 
 import { SnapshotModal } from 'contexts/Index'
-import {
-  SnapshotSection,
-  SnapshotInstallments,
-  SnapshotProfile
-} from 'contexts/Checkout'
+import { SnapshotSection, SnapshotProfile } from 'contexts/Checkout'
 import { SnapshotCard, SnapshotOpacity, SnapshotRef } from 'contexts/Main'
 
 import MercadopagoErrorStatus from 'utils/modules/MercadopagoErrorStatus'

@@ -2,44 +2,63 @@ import axios from 'axios'
 import Slider from 'components/homePage/slider'
 import styles from 'styles/Home.module.css'
 import { useRouter } from 'next/router'
-{
-  /*  */
-}
+import { useSession } from 'next-auth/react'
+
 const Index = ({ dados }: any) => {
+  const { data: session } = useSession()
   const router = useRouter()
   return (
     <>
       <Slider />
+      <div className="row justify-content-center mt-5">
+        {session ? (
+          <span
+            style={{
+              width: '100%',
+              marginInline: 'auto'
+            }}
+            className="display-5 text-center"
+          >
+            Olá {session.user?.name}, seja bem-vindo!
+          </span>
+        ) : (
+          'usuário não está logado'
+        )}
+      </div>
 
       <div className={`mx-auto ${styles.gridHomeProducts}`}>
         <div className={styles.cardsGrid}>
-          {dados.map((e: any, index: number) => (
-            <>
-              <div className={styles.card}>
-                <div className={styles.imgFake}>{index + 1}</div>
-                <div className="card-body">
-                  <h5 className="card-title">{e.name}</h5>
-                  <p className="card-text">{e.main_resume}</p>
-                  <div className={styles.buttonsCardWrapper}>
-                    <button
-                      type="button"
-                      className={`${styles.CustombtnBuy} btn-success`}
-                      onClick={() => router.push(`/checkout/${e.course_id}`)}
-                    >
-                      Comprar
-                    </button>
-                    <button
-                      type="button"
-                      className={`${styles.CustombtnInfo} btn-secondary`}
-                      onClick={() => router.push(`/product/${e.course_id}`)}
-                    >
-                      Ver Detalhes
-                    </button>
+          {dados.map((e: any, index: number) =>
+            index < 6 ? (
+              <>
+                <div className={styles.card}>
+                  <div className={styles.imgFake}>{index + 1}</div>
+                  <div className="card-body">
+                    <h5 className="card-title">{e.name}</h5>
+                    <p className="card-text">{e.main_resume}</p>
+                    <div className={styles.buttonsCardWrapper}>
+                      <button
+                        type="button"
+                        className={`${styles.CustombtnBuy} btn-success`}
+                        onClick={() => router.push(`/checkout/${e.course_id}`)}
+                      >
+                        Comprar
+                      </button>
+                      <button
+                        type="button"
+                        className={`${styles.CustombtnInfo} btn-secondary`}
+                        onClick={() => router.push(`/product/${e.course_id}`)}
+                      >
+                        Ver Detalhes
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </>
-          ))}
+              </>
+            ) : (
+              false
+            )
+          )}
         </div>
       </div>
     </>
