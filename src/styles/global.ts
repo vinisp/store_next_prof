@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   /*----------- SETTINGS ----------*/
   :root {
-    font-size: 60%;
+    
     --font-mont: "Montserrat", Helvetica, sans-serif;
     --font-open: "Open Sans", Helvetica, sans-serif;
     --font-oswald: "Oswald", arial, helvetica, sans-serif;

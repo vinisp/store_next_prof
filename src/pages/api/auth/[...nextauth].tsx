@@ -116,6 +116,7 @@ export default NextAuth({
               name: 'Meu Tenant criado',
               image: '',
               slug: '',
+              courses: '',
               plan: 'free'
             }
           })

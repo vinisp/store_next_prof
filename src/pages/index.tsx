@@ -3,6 +3,7 @@ import Slider from 'components/homePage/slider'
 import styles from 'styles/Home.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 const Index = ({ dados }: any) => {
   const { data: session } = useSession()
@@ -39,14 +40,14 @@ const Index = ({ dados }: any) => {
                     <div className={styles.buttonsCardWrapper}>
                       <button
                         type="button"
-                        className={`${styles.CustombtnBuy} btn-success`}
+                        className={`btn btn-success`}
                         onClick={() => router.push(`/checkout/${e.course_id}`)}
                       >
                         Comprar
                       </button>
                       <button
                         type="button"
-                        className={`${styles.CustombtnInfo} btn-secondary`}
+                        className={`btn btn-secondary`}
                         onClick={() => router.push(`/product/${e.course_id}`)}
                       >
                         Ver Detalhes
@@ -60,6 +61,11 @@ const Index = ({ dados }: any) => {
             )
           )}
         </div>
+      </div>
+      <div className="row">
+        <Link href={'/allcourses'}>
+          <a className="btn btn-success">Ver todos</a>
+        </Link>
       </div>
     </>
   )

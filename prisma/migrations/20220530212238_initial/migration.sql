@@ -48,13 +48,27 @@ CREATE TABLE "VerificationToken" (
 CREATE TABLE "Tenant" (
     "id" TEXT NOT NULL,
     "name" VARCHAR(255) NOT NULL,
-    "slug" VARCHAR(255) NOT NULL,
+    "courses" VARCHAR(255) NOT NULL,
     "plan" VARCHAR(255) NOT NULL,
+    "slug" VARCHAR(255) NOT NULL,
     "image" VARCHAR(255) NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Tenant_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Course" (
+    "id" TEXT NOT NULL,
+    "course_id" VARCHAR(255),
+    "name" VARCHAR(255),
+    "courses" VARCHAR(255),
+    "plan" VARCHAR(255),
+    "userId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Course_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -80,3 +94,6 @@ ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Tenant" ADD CONSTRAINT "Tenant_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Course" ADD CONSTRAINT "Course_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

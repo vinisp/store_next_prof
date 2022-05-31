@@ -1,10 +1,47 @@
 import { useSession } from 'next-auth/react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import Loading from 'components/Loading'
+import Head from 'next/head'
 
-const App = () => {
+const App = ({ dados }: any) => {
   const { data: session } = useSession()
+  const [courseNames, SetCourseNames] = useState<Array<any>>([])
+
+  function GetCourseName() {
+    const courseList = dados
+    useEffect(() => {
+      if (courseList.length === courseNames.length) {
+        return console.log('atualizado')
+      }
+
+      if (courseNames.length < courseList.length) {
+        courseList.map((e: string) => {
+          axios
+            .get(`https://deppback.herokuapp.com/course/${e}`)
+            .then((response) =>
+              courseNames?.length > 0
+                ? SetCourseNames([...courseNames, ...response.data])
+                : SetCourseNames(response.data)
+            )
+            .catch((err) => console.error(err))
+          console.log(e)
+        })
+      }
+    }, [courseNames])
+    return null
+  }
+
+  GetCourseName()
+
   return (
     <>
-      <div style={{ minHeight: '100vh', border: 'solid 1px red' }}>
+      <div>
+        <Head>
+          <title>Área do usuário</title>
+        </Head>
+      </div>
+      <div style={{ minHeight: '100vh', display: 'flex' }}>
         <div
           className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
           style={{ width: '280px', minHeight: '100vh' }}
@@ -20,20 +57,12 @@ const App = () => {
           </a>
           <hr />
           <ul className="nav nav-pills flex-column mb-auto">
-            <li className="nav-item">
-              <a href="#" className="nav-link active" aria-current="page">
-                <svg className="bi me-2" width={16} height={16}>
-                  <use xlinkHref="#home" />
-                </svg>
-                Home
-              </a>
-            </li>
             <li>
               <a href="#" className="nav-link text-white">
                 <svg className="bi me-2" width={16} height={16}>
                   <use xlinkHref="#speedometer2" />
                 </svg>
-                Dashboard
+                Cursos
               </a>
             </li>
             <li>
@@ -41,77 +70,69 @@ const App = () => {
                 <svg className="bi me-2" width={16} height={16}>
                   <use xlinkHref="#table" />
                 </svg>
-                Orders
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav-link text-white">
-                <svg className="bi me-2" width={16} height={16}>
-                  <use xlinkHref="#grid" />
-                </svg>
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav-link text-white">
-                <svg className="bi me-2" width={16} height={16}>
-                  <use xlinkHref="#people-circle" />
-                </svg>
-                Customers
+                Tipster
               </a>
             </li>
           </ul>
           <hr />
-          <div className="dropdown">
-            <a
-              href="#"
-              className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-              id="dropdownUser1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src="https://github.com/mdo.png"
-                alt=""
-                width={32}
-                height={32}
-                className="rounded-circle me-2"
-              />
-              <strong>mdo</strong>
-            </a>
-            <ul
-              className="dropdown-menu dropdown-menu-dark text-small shadow"
-              aria-labelledby="dropdownUser1"
-            >
-              <li>
-                <a className="dropdown-item" href="#">
-                  New project...
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Settings
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Profile
-                </a>
-              </li>
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Sign out
-                </a>
-              </li>
-            </ul>
-          </div>
+        </div>
+
+        <div
+          className="mt-5"
+          style={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '2px',
+            alignItems: 'center'
+          }}
+        >
+          <table className="table table-responsive table-striped table-hover">
+            <thead className="table-success">
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Acesso</th>
+            </thead>
+            <tbody>
+              {courseNames.length > 0 ? (
+                courseNames.map((e) => (
+                  <>
+                    <tr>
+                      <th scope="row">{e.name}</th>
+                      <td className="">{e.category}</td>
+                      <td>
+                        <button
+                          style={{ flex: '0 0 30%' }}
+                          onClick={() => console.log(e.course_id)}
+                        >
+                          Acessar o curso
+                        </button>
+                      </td>
+                    </tr>
+                  </>
+                ))
+              ) : (
+                <Loading />
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
   )
+}
+
+App.getInitialProps = async () => {
+  try {
+    const response = await axios.get(
+      'http://localhost:5000/courses/test_user_42899768@testuser.com'
+    )
+    const courseList = response.data.body
+    const course_id = courseList.map((e: any) => e.description)
+    return { dados: course_id }
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export default App
