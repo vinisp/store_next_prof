@@ -3,8 +3,10 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Loading from 'components/Loading'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 const App = ({ dados }: any) => {
+  const route = useRouter()
   const { data: session } = useSession()
   const [courseNames, SetCourseNames] = useState<Array<any>>([])
 
@@ -104,13 +106,7 @@ const App = ({ dados }: any) => {
                         <td>
                           <button
                             onClick={() => {
-                              console.log(``)
-                              axios
-                                .get(
-                                  `https://deppback.herokuapp.com/${e.course_id}/champters`
-                                )
-                                .then((response) => console.log(response.data))
-                                .catch((err) => console.error(err))
+                              route.push(`/course/${e.course_id}`)
                             }}
                           >
                             Acessar o curso
