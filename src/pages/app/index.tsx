@@ -9,27 +9,25 @@ const App = ({ dados }: any) => {
   const [courseNames, SetCourseNames] = useState<Array<any>>([])
 
   function GetCourseName() {
-    const courseList = dados
     useEffect(() => {
-      if (courseList.length === courseNames.length) {
+      if (dados.length === courseNames.length) {
         return console.log('atualizado')
       }
 
-      if (courseNames.length < courseList.length) {
-        courseList.map((e: string) => {
-          axios
-            .get(`https://deppback.herokuapp.com/course/${e}`)
-            .then((response) =>
-              courseNames?.length > 0
-                ? SetCourseNames([...courseNames, ...response.data])
-                : SetCourseNames(response.data)
-            )
-            .catch((err) => console.error(err))
-          console.log(e)
-        })
-      }
-    }, [courseNames])
-    return null
+      dados.map((e: string) => {
+        axios
+          .get(`https://deppback.herokuapp.com/course/${e}`)
+          .then((response) => {
+            //console.log(index)
+            SetCourseNames((coursesNames) => [
+              ...coursesNames,
+              ...response.data
+            ])
+          })
+          .catch((err) => console.error(err))
+      })
+    }, [dados])
+    return
   }
 
   GetCourseName()
@@ -91,26 +89,39 @@ const App = ({ dados }: any) => {
             <thead className="table-success">
               <th>Nome</th>
               <th>Categoria</th>
+              <th>Dificuldade</th>
               <th>Acesso</th>
             </thead>
             <tbody>
-              {courseNames.length > 0 ? (
-                courseNames.map((e) => (
-                  <>
-                    <tr>
-                      <th scope="row">{e.name}</th>
-                      <td className="">{e.category}</td>
-                      <td>
-                        <button
-                          style={{ flex: '0 0 30%' }}
-                          onClick={() => console.log(e.course_id)}
-                        >
-                          Acessar o curso
-                        </button>
-                      </td>
-                    </tr>
-                  </>
-                ))
+              {courseNames?.length > 0 ? (
+                courseNames.map((e, index) =>
+                  index + 1 <= dados.length ? (
+                    <>
+                      <tr>
+                        <th scope="row">{e.name}</th>
+                        <td className="">{e.category}</td>
+                        <td>{e.level}</td>
+                        <td>
+                          <button
+                            onClick={() => {
+                              console.log(``)
+                              axios
+                                .get(
+                                  `https://deppback.herokuapp.com/${e.course_id}/champters`
+                                )
+                                .then((response) => console.log(response.data))
+                                .catch((err) => console.error(err))
+                            }}
+                          >
+                            Acessar o curso
+                          </button>
+                        </td>
+                      </tr>
+                    </>
+                  ) : (
+                    false
+                  )
+                )
               ) : (
                 <Loading />
               )}
