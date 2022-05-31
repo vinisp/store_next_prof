@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 const Course = () => {
   const route = useRouter()
   const [champtersName, setChamptersName] = useState<any[]>([])
+  const [dataForRender, setDataForRender] = useState<any[]>([])
 
   const GetChampters = async () => {
     const query = route.query.coid
@@ -29,25 +30,40 @@ const Course = () => {
   GetChampters()
   return (
     <>
-      <h1>Finalmente a página do curso</h1>
-      <ul>
-        {champtersName.map((e) => (
-          <>
-            <button
-              onClick={() =>
-                axios
-                  .get(
-                    `https://deppback.herokuapp.com/elements/${e.course_id}/${e.champter_id}/get`
-                  )
-                  .then((response) => console.log(response.data))
-                  .catch((err) => console.error(err))
-              }
-            >
-              <li key={e.id}>{e.name}</li>
-            </button>
-          </>
-        ))}
-      </ul>
+      <div style={{ display: 'flex', minHeight: '100vh', gap: '2rem' }}>
+        <ul style={{ display: 'flex', flexDirection: 'column' }}>
+          {champtersName.map((e) => (
+            <>
+              <button
+                onClick={() =>
+                  axios
+                    .get(
+                      `https://deppback.herokuapp.com/elements/${e.course_id}/${e.champter_id}/get`
+                    )
+                    .then((response) => {
+                      setDataForRender(response.data)
+                      console.log(response.data)
+                    })
+                    .catch((err) => console.error(err))
+                }
+              >
+                <li key={e.id}>{e.name}</li>
+              </button>
+            </>
+          ))}
+        </ul>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}
+        >
+          {dataForRender
+            .sort((a, b) => a.order - b.order)
+            .map((e) => (
+              <>
+                <span> {e.content} </span>
+              </>
+            ))}
+        </div>
+      </div>
     </>
   )
 }
