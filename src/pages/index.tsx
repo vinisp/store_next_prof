@@ -93,7 +93,7 @@ const Index = ({ dados }: any) => {
         className="row"
         style={{ width: 'min(350px, 90vw)', marginInline: 'auto' }}
       >
-        <Link href={'/allcourses'}>
+        <Link href={'/allcourses/1'}>
           <a className="btn btn-success">Ver todos</a>
         </Link>
       </div>

@@ -50,11 +50,7 @@ const NavBar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <button
-                    style={{ fontSize: '5px !important' }}
-                    className="nav-link"
-                    onClick={() => signIn()}
-                  >
+                  <button className="nav-link" onClick={() => signIn()}>
                     Sign in
                   </button>
                 </li>
