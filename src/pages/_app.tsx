@@ -23,7 +23,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <GlobalStyles />
         <StyledContainer />
         <Component {...pageProps} />
-        <footer>Footer</footer>
+        <footer className="bg-light text-center text-lg-start mt-4 bg-dark">
+          {/* Copyright */}
+          <div className="text-light text-center p-3">
+            © 2022 Copyright - PROFITEAM
+            <a className="text-light" href=""></a>
+          </div>
+          {/* Copyright */}
+        </footer>
       </SessionProvider>
     </>
   )
