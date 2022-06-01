@@ -18,13 +18,25 @@ const Index = ({ dados }: any) => {
               width: '100%',
               marginInline: 'auto'
             }}
-            className="display-5 text-center"
+            className="display-6 text-center"
           >
             Olá {session.user?.name}, seja bem-vindo!
           </span>
         ) : (
           'usuário não está logado'
         )}
+
+        <h3 className="display-3 text-center"> Conheça nossos cursos </h3>
+        <figure className="text-center">
+          <blockquote className="blockquote">
+            <p>
+              A melhor plataforma para quem quer aprender apostar de verdade!
+            </p>
+          </blockquote>
+          <figcaption className="blockquote-footer">
+            Someone famous in <cite title="Source Title">Source Title</cite>
+          </figcaption>
+        </figure>
       </div>
 
       <div className={`mx-auto ${styles.gridHomeProducts}`}>
@@ -32,16 +44,31 @@ const Index = ({ dados }: any) => {
           {dados.map((e: any, index: number) =>
             index < 6 ? (
               <>
-                <div className={styles.card}>
+                <div
+                  className="card"
+                  style={{
+                    width: 'min(250px, 90vw)',
+                    height: '450px',
+                    position: 'relative'
+                  }}
+                >
                   <div className={styles.imgFake}>{index + 1}</div>
                   <div className="card-body">
                     <h5 className="card-title">{e.name}</h5>
                     <p className="card-text">{e.main_resume}</p>
-                    <div className={styles.buttonsCardWrapper}>
+                    <div
+                      className={styles.buttonsCardWrapper}
+                      style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        left: '2px'
+                      }}
+                    >
                       <button
                         type="button"
                         className={`btn btn-success`}
                         onClick={() => router.push(`/checkout/${e.course_id}`)}
+                        style={{ width: '100px' }}
                       >
                         Comprar
                       </button>
@@ -62,7 +89,10 @@ const Index = ({ dados }: any) => {
           )}
         </div>
       </div>
-      <div className="row">
+      <div
+        className="row"
+        style={{ width: 'min(350px, 90vw)', marginInline: 'auto' }}
+      >
         <Link href={'/allcourses'}>
           <a className="btn btn-success">Ver todos</a>
         </Link>

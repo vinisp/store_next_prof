@@ -19,10 +19,8 @@ const Slider = () => {
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block">
-              <h4 className="h4 display-3">Second slide label</h4>
-              <p className="h6">
-                Some representative placeholder content for the second slide.
-              </p>
+              <h4 className="h4 display-3">Primeiro Slide</h4>
+              <p className="h6">Descrição Opicional.</p>
             </div>
           </div>
           <div className="carousel-item">
@@ -33,10 +31,8 @@ const Slider = () => {
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block">
-              <h4 className="h4 display-3">Second slide label</h4>
-              <p className="h6">
-                Some representative placeholder content for the second slide.
-              </p>
+              <h4 className="h4 display-3">Segundo Slide</h4>
+              <p className="h6">Descrição Opicional.</p>
             </div>
           </div>
           <div className="carousel-item">
@@ -47,10 +43,8 @@ const Slider = () => {
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block">
-              <h4 className="h4 display-3">Second slide label</h4>
-              <p className="h6">
-                Some representative placeholder content for the second slide.
-              </p>
+              <h4 className="h4 display-3">Terceiro slide</h4>
+              <p className="h6">Descrição Opicional</p>
             </div>
           </div>
         </div>
