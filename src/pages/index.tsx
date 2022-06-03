@@ -55,7 +55,7 @@ const Index = ({ dados }: any) => {
                   <div className={styles.imgFake}>{index + 1}</div>
                   <div className="card-body">
                     <h5 className="card-title">{e.name}</h5>
-                    <p className="card-text">{e.main_resume}</p>
+                    <p className="card-text">R${e.price}</p>
                     <div
                       className={styles.buttonsCardWrapper}
                       style={{
@@ -90,7 +90,7 @@ const Index = ({ dados }: any) => {
         </div>
       </div>
       <div
-        className="row"
+        className="row mt-4"
         style={{ width: 'min(350px, 90vw)', marginInline: 'auto' }}
       >
         <Link href={'/allcourses/1'}>

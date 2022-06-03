@@ -11,12 +11,15 @@ const ProductPage = ({ dados }: any) => {
   const DetailsInfo = () => {
     return (
       <>
-        <div className="mt-5">
-          <h3>{dados[0].name}</h3>
-          <h3>{dados[0].main_resume}</h3>
-          <h4>{dados[0].level} </h4>
+        <div
+          className="mt-2"
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <span>{dados[0].name}</span>
+          <span>{dados[0].main_resume}</span>
+          <span>{dados[0].level} </span>
           <span>
-            <sup> R$ </sup> {dados[0].price}
+            <sup> R$ </sup> <span className="h2"> {dados[0].price} </span>
           </span>
 
           <hr />
@@ -32,12 +35,6 @@ const ProductPage = ({ dados }: any) => {
 
   return (
     <>
-      <Head>
-        <link
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-          rel="stylesheet"
-        />
-      </Head>
       <div
         className="container mt-2"
         style={{ flexWrap: 'wrap', minHeight: '100vh' }}
@@ -109,8 +106,8 @@ const ProductPage = ({ dados }: any) => {
             </div>
           </div>
           <div className="col">
-            <div>
-              <h2 className="display-5">Title</h2>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span className="h2">{dados[0].name}</span>
               <span>
                 Criado por
                 <Link href="/username">
@@ -136,11 +133,36 @@ const ProductPage = ({ dados }: any) => {
               <hr className="mt-12 mb-12" />
               <div className="row">
                 <button
-                  className="btn btn-success"
+                  style={{ width: '250px' }}
+                  className="btn btn-success ms-2"
                   onClick={() => router.push(`/checkout/${dados[0].course_id}`)}
                 >
                   Comprar
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div>
+          <span className="h2 mb-4">Comentários</span>
+          <div className="card mt-4" style={{ width: 'min(760px, 90vw)' }}>
+            <div className="row g-0">
+              <div className="col-md-4">
+                <img src="..." className="img-fluid rounded-start" alt="..." />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h5 className="card-title">Nome do Usuário</h5>
+                  <p className="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <p className="card-text">
+                    <small className="text-muted">11/11/2021</small>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

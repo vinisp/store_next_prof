@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
   max-width: 1056px;
   margin: auto;
+  min-height: 100vh;
 
   & > *:not(:last-child) {
     margin-bottom: 2rem;

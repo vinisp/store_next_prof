@@ -32,6 +32,16 @@ const NavBar = () => {
             {session ? (
               <>
                 <li className="nav-item">
+                  <Link href="/produtores">
+                    <a className="nav-link"> Produtores </a>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link href="/tipsters">
+                    <a className="nav-link"> Tipsters </a>
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link href="/app">
                     <a className="nav-link"> Area do usuário </a>
                   </Link>
@@ -49,6 +59,11 @@ const NavBar = () => {
               </>
             ) : (
               <>
+                <li className="nav-item">
+                  <Link href="/tipsters">
+                    <a className="nav-link"> Tipsters </a>
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <button className="nav-link" onClick={() => signIn()}>
                     Sign in

@@ -3,7 +3,7 @@ import axios from 'axios'
 import styles from 'styles/Home.module.css'
 import { useState, useEffect } from 'react'
 
-const AllCoures = ({ dados }: any) => {
+const FilterPage = ({ dados }: any) => {
   const router = useRouter()
   const [filterData, setFilterData] = useState<any[]>([])
   const categorys = new Set(dados.map((e: any) => e.category))
@@ -17,11 +17,10 @@ const AllCoures = ({ dados }: any) => {
 
   const listButtons = Array.from({ length: NumberOfPages }, (v, k) => k + 1)
 
-  const query = router.query.acid
-
   function GetPageNumber() {
+    const query = router.query.fid
     useEffect(() => {
-      query ? setPage(Number(router.query.acid)) : false
+      query ? setPage(Number(router.query.fid)) : false
     }, [query])
     return null
   }
@@ -38,6 +37,7 @@ const AllCoures = ({ dados }: any) => {
   ShowItems()
 
   function NextButton() {
+    console.log(page, NumberOfPages)
     if (page === NumberOfPages) {
       return (
         <>
@@ -53,7 +53,7 @@ const AllCoures = ({ dados }: any) => {
         <>
           <button
             className="btn btn-success"
-            onClick={() => router.push(`/allcourses/${page + 1}`)}
+            onClick={() => router.push(`/filter/${page + 1}`)}
           >
             Next Page
           </button>
@@ -78,7 +78,7 @@ const AllCoures = ({ dados }: any) => {
         <>
           <button
             className="btn btn-success"
-            onClick={() => router.push(`/allcourses/${page - 1}`)}
+            onClick={() => router.push(`/filter/${page - 1}`)}
           >
             Prev Page
           </button>
@@ -308,7 +308,7 @@ const AllCoures = ({ dados }: any) => {
             <>
               <button
                 className={`btn btn-outline-success`}
-                onClick={() => router.push(`/allcourses/${e}`)}
+                onClick={() => router.push(`/filter/${e}`)}
               >
                 {e}
               </button>
@@ -321,7 +321,7 @@ const AllCoures = ({ dados }: any) => {
   )
 }
 
-AllCoures.getInitialProps = async () => {
+FilterPage.getInitialProps = async () => {
   try {
     const response = await axios.get('https://deppback.herokuapp.com/courses')
     return { dados: response.data }
@@ -330,4 +330,4 @@ AllCoures.getInitialProps = async () => {
   }
 }
 
-export default AllCoures
+export default FilterPage
