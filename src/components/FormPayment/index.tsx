@@ -179,7 +179,10 @@ const FormPayment = () => {
   }
 
   const formSubmit: FormSubmitProps = async (data) => {
-    const res = await axios.post('http://localhost:5000/', data)
+    const res = await axios.post(
+      'https://mercado-profiteam.herokuapp.com/',
+      data
+    )
     return res.data
   }
 

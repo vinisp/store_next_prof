@@ -44,42 +44,51 @@ const Index = ({ dados }: any) => {
           {dados.map((e: any, index: number) =>
             index < 6 ? (
               <>
+                {' '}
                 <div
                   className="card"
                   style={{
                     width: 'min(250px, 90vw)',
-                    height: '450px',
-                    position: 'relative'
+                    height: '450px'
                   }}
                 >
                   <div className={styles.imgFake}>{index + 1}</div>
-                  <div className="card-body">
-                    <h5 className="card-title">{e.name}</h5>
-                    <p className="card-text">R${e.price}</p>
-                    <div
-                      className={styles.buttonsCardWrapper}
-                      style={{
-                        position: 'absolute',
-                        bottom: '10px',
-                        left: '2px'
-                      }}
+                  <div
+                    className="card-body"
+                    style={{ display: 'flex', flexDirection: 'column' }}
+                  >
+                    <h5
+                      className="card-title text-center"
+                      style={{ flex: '0 0 50%', maxHeight: '100px !important' }}
                     >
-                      <button
-                        type="button"
-                        className={`btn btn-success`}
-                        onClick={() => router.push(`/checkout/${e.course_id}`)}
-                        style={{ width: '100px' }}
-                      >
-                        Comprar
-                      </button>
-                      <button
-                        type="button"
-                        className={`btn btn-secondary`}
-                        onClick={() => router.push(`/product/${e.course_id}`)}
-                      >
-                        Ver Detalhes
-                      </button>
-                    </div>
+                      {e.name}
+                      <hr />
+                    </h5>
+                    <p className="card-text h2 fw-light text-center">
+                      <sup> R$ </sup> {e.price}
+                    </p>
+                  </div>
+                  <div
+                    className={`${styles.buttonsCardWrapper} mb-2`}
+                    style={{
+                      bottom: '10px'
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className={`btn btn-success`}
+                      onClick={() => router.push(`/checkout/${e.course_id}`)}
+                      style={{ height: '40px' }}
+                    >
+                      Comprar
+                    </button>
+                    <button
+                      type="button"
+                      className={`btn btn-secondary`}
+                      onClick={() => router.push(`/product/${e.course_id}`)}
+                    >
+                      Ver Detalhes
+                    </button>
                   </div>
                 </div>
               </>
