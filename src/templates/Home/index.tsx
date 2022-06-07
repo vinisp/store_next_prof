@@ -76,10 +76,10 @@ function TemplateHome() {
             }}
           >
             <StepBox />
+            <Info />
             <Checkout />
           </ElementProvider>
         </S.Main>
-        <Info />
       </S.Content>
     </S.Wrapper>
   )

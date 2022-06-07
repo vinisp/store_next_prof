@@ -9,9 +9,7 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   width: 304px;
-  position: relative;
   margin: auto;
-  margin-right: 0;
   height: 182px;
 `
 

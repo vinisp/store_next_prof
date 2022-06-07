@@ -34,7 +34,7 @@ export const Input = styled.input`
     display: block;
     font-weight: 400;
     color: #797979;
-    font-size: 1.75rem;
+    font-size: 1rem;
     border: 1px solid #dadce0;
     font-family: var(--font-poppins);
     text-indent: 1.4rem;
@@ -79,7 +79,7 @@ export const Label = styled.label`
   color: #676767;
   font-weight: 300;
   position: absolute;
-  font-size: 1.6rem;
+  font-size: 1rem;
   top: 15px;
   left: 13px;
 `
@@ -160,7 +160,7 @@ export const Terms = styled.div`
 
   &,
   button {
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 100;
   }
 

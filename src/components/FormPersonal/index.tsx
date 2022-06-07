@@ -47,6 +47,8 @@ function FormPersonal() {
 
   return (
     <S.Wrapper status={useSection.screen}>
+      <hr />
+      <h3>Dados Pessoais</h3>
       <S.Group>
         <S.Flex>
           <S.Input
