@@ -108,7 +108,7 @@ const FormPayment = () => {
                 console.log('error:', response)
               }
             })
-            console.log(price > 0)
+            console.log(price > 0 ? 'sim' : 'não')
             window.Mercadopago.getInstallments(
               { bin, amount: price },
 
@@ -184,7 +184,7 @@ const FormPayment = () => {
 
   const formSubmit: FormSubmitProps = async (data) => {
     const res = await axios.post(
-      'http://mercado-profiteam.herokuapp.com/',
+      'https://mercado-profiteam.herokuapp.com/',
       data
     )
     return res.data
