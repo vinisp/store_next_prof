@@ -107,7 +107,7 @@ const FormPayment = () => {
             .then((response) => {
               setPrice(response.data[0].price)
               setCourseId(response.data[0].course_id)
-              console.log(route)
+              console.log(response.data[0].price)
             })
             .catch((err) => console.error(err))
         : console.log('não')
