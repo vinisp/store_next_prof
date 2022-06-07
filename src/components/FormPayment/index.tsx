@@ -71,17 +71,27 @@ const FormPayment = () => {
     const query = route.query.cid
 
     useEffect(() => {
-      query
+      /* query
         ? axios
+            .get(`https://deppback.herokuapp.com/course/${query}`)
+            .then((response) => {
+              setPrice(response.data[0].price)
+              setCourseId(response.data[0].course_id)
+              console.log(route)
+            })
+            .catch((err) => console.error(err))
+        : console.log(false) */
+      query === undefined
+        ? console.log('sim')
+        : axios
             .get(`https://deppback.herokuapp.com/course/${query}`)
             .then((response) => {
               setPrice(response.data[0].price)
               setCourseId(response.data[0].course_id)
             })
             .catch((err) => console.error(err))
-        : console.log(false)
 
-      return console.log(`https://deppback.herokuapp.com/course/${query}`)
+      return console.log('teste')
     }, [query])
   }
 
@@ -105,7 +115,7 @@ const FormPayment = () => {
                 console.log('error:', response)
               }
             })
-
+            console.log(price)
             window.Mercadopago.getInstallments(
               { bin, amount: price },
               function (status, response) {
