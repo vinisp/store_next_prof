@@ -101,15 +101,6 @@ const FormPayment = () => {
   const GetStaltments = () => {
     const query = route.query.cid
     useEffect(() => {
-      typeof query === 'string'
-        ? axios
-            .get(`https://deppback.herokuapp.com/course/${query}`)
-            .then((response) => {
-              setPrice(response.data[0].price)
-              setCourseId(response.data[0].course_id)
-            })
-            .catch((err) => console.error(err))
-        : console.log('não')
       if (cardNumberRef.current) {
         if (card_number || (!card_number && issuer)) {
           // recebe o nome do cartão antecipado
