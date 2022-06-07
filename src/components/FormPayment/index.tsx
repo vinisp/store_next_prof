@@ -81,15 +81,16 @@ const FormPayment = () => {
             })
             .catch((err) => console.error(err))
         : console.log(false) */
-      query === undefined
-        ? console.log('sim')
-        : axios
+      typeof query === 'string'
+        ? axios
             .get(`https://deppback.herokuapp.com/course/${query}`)
             .then((response) => {
               setPrice(response.data[0].price)
               setCourseId(response.data[0].course_id)
+              console.log(route)
             })
             .catch((err) => console.error(err))
+        : console.log('não')
 
       return console.log('teste')
     }, [query])
