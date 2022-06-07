@@ -130,7 +130,7 @@ const FormPayment = () => {
                     }
                   }
                 )
-              : 'não'
+              : console.log('não deu')
           } else {
             if (card_number.length < 6 && issuer) {
               setInstallments([
