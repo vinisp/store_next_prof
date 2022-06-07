@@ -77,29 +77,20 @@ const FormPayment = () => {
             .then((response) => {
               setPrice(response.data[0].price)
               setCourseId(response.data[0].course_id)
-              console.log(route)
+              response.data[0].price > 0
+                ? setPrice(response.data[0].price)
+                : false
             })
             .catch((err) => console.error(err))
         : console.log(false)
-      typeof query === 'string'
-        ? axios
-            .get(`https://deppback.herokuapp.com/course/${query}`)
-            .then((response) => {
-              setPrice(response.data[0].price)
-              setCourseId(response.data[0].course_id)
-              console.log(route)
-            })
-            .catch((err) => console.error(err))
-        : console.log('não')
 
-      return console.log('teste')
-    }, [query])
+      return
+    }, [query, price])
   }
 
   GetPrice()
 
   const GetStaltments = () => {
-    const query = route.query.cid
     useEffect(() => {
       if (cardNumberRef.current) {
         if (card_number || (!card_number && issuer)) {
@@ -157,10 +148,10 @@ const FormPayment = () => {
       } else {
         cardNumberRef.current = true
       }
-    }, [card_number, query])
+    }, [card_number, price])
   }
 
-  price > 0 ? GetStaltments() : console.log('não temos valor')
+  GetStaltments()
 
   const inputFn: InputProps = (data, val) =>
     setProfile((prevState) =>
@@ -208,7 +199,7 @@ const FormPayment = () => {
           formSubmit({
             token: response.id,
             payment_method_id: issuer,
-            transaction_amount: +price,
+            transaction_amount: price,
             description: courseId,
             installments: slt_installment,
             email: e_mail
