@@ -36,10 +36,10 @@ type FormSubmitProps = (data: {
 }) => Promise<FormSubmitThenProps>
 
 const FormPayment = () => {
-  const [price, getPrice] = useState<number>(0)
+  const [price, setPrice] = useState<number>(0)
   const cardNumberRef = useRef(false)
   // const { card_number = '', issuer } = useProfile
-  const [courseId, getCourseId] = useState<string>('')
+  const [courseId, setCourseId] = useState<string>('')
   const clickRef = useRef(true)
   const { useSection, setSection } = SnapshotSection()
   const { setOpacity } = SnapshotOpacity()
@@ -75,8 +75,8 @@ const FormPayment = () => {
         ? axios
             .get(`https://deppback.herokuapp.com/course/${query}`)
             .then((response) => {
-              getPrice(response.data[0].price)
-              getCourseId(response.data[0].course_id)
+              setPrice(response.data[0].price)
+              setCourseId(response.data[0].course_id)
             })
             .catch((err) => console.error(err))
         : console.log(false)
@@ -180,7 +180,7 @@ const FormPayment = () => {
 
   const formSubmit: FormSubmitProps = async (data) => {
     const res = await axios.post(
-      'https://mercado-profiteam.herokuapp.com/',
+      'http://mercado-profiteam.herokuapp.com/',
       data
     )
     return res.data
