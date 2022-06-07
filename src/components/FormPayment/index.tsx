@@ -108,7 +108,7 @@ const FormPayment = () => {
                 console.log('error:', response)
               }
             })
-            console.log(price)
+            console.log(price > 0)
             window.Mercadopago.getInstallments(
               { bin, amount: price },
 
