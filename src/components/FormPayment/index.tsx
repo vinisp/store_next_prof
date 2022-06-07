@@ -107,7 +107,6 @@ const FormPayment = () => {
             .then((response) => {
               setPrice(response.data[0].price)
               setCourseId(response.data[0].course_id)
-              console.log(response.data[0].price)
             })
             .catch((err) => console.error(err))
         : console.log('não')
@@ -127,9 +126,10 @@ const FormPayment = () => {
                 console.log('error:', response)
               }
             })
-
+            console.log(price)
             window.Mercadopago.getInstallments(
               { bin, amount: price },
+
               function (status, response) {
                 if (status === 200) {
                   setInstallments(
