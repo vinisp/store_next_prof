@@ -264,7 +264,7 @@ const AllCoures = ({ dados }: any) => {
   return (
     <>
       <div style={{ minHeight: '100vh' }}>
-        <div>
+        {/* <div>
           <ul
             className="btn-group"
             style={{ display: 'flex', flexDirection: 'column' }}
@@ -294,7 +294,7 @@ const AllCoures = ({ dados }: any) => {
               </li>
             ))}
           </ul>
-        </div>
+                </div> */}
         <div className={`mx-auto ${styles.gridHomeProducts}`}>
           <div className={styles.cardsGrid}>{ElementsToRender()}</div>
         </div>
