@@ -109,30 +109,26 @@ const FormPayment = () => {
               }
             })
 
-            if (price > 0) {
-              window.Mercadopago.getInstallments(
-                { bin, amount: price },
+            window.Mercadopago.getInstallments(
+              { bin, amount: price },
 
-                function (status, response) {
-                  if (status === 200) {
-                    setInstallments(
-                      response[0].payer_costs.map(
-                        ({ recommended_message, installments }) => {
-                          return {
-                            recommended_message,
-                            installments
-                          }
+              function (status, response) {
+                if (status === 200) {
+                  setInstallments(
+                    response[0].payer_costs.map(
+                      ({ recommended_message, installments }) => {
+                        return {
+                          recommended_message,
+                          installments
                         }
-                      )
+                      }
                     )
-                  } else {
-                    console.log('error:', response)
-                  }
+                  )
+                } else {
+                  console.log('error:', response)
                 }
-              )
-            } else {
-              console.log('não deu')
-            }
+              }
+            )
           } else {
             if (card_number.length < 6 && issuer) {
               setInstallments([
@@ -188,7 +184,7 @@ const FormPayment = () => {
 
   const formSubmit: FormSubmitProps = async (data) => {
     const res = await axios.post(
-      'https://mercado-profiteam.herokuapp.com/',
+      'https://mercado-profiteam.herokuapp.com',
       data
     )
     return res.data
@@ -200,10 +196,18 @@ const FormPayment = () => {
       window.Mercadopago.createToken(formRef.current, (status, response) => {
         if (status === 200 || status === 201) {
           setModal({ status: true })
+          console.log({
+            payment_method_id: issuer,
+            transaction_amount: +price,
+            description: courseId,
+            installments: slt_installment,
+            email: e_mail,
+            price: typeof +price
+          })
           formSubmit({
             token: response.id,
             payment_method_id: issuer,
-            transaction_amount: price,
+            transaction_amount: +price,
             description: courseId,
             installments: slt_installment,
             email: e_mail
