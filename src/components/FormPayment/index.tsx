@@ -169,7 +169,7 @@ const FormPayment = () => {
     }, [card_number, query])
   }
 
-  GetStaltments()
+  price > 0 ? GetStaltments() : console.log('não temos valor')
 
   const inputFn: InputProps = (data, val) =>
     setProfile((prevState) =>
