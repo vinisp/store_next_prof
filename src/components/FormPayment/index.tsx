@@ -36,7 +36,7 @@ type FormSubmitProps = (data: {
 }) => Promise<FormSubmitThenProps>
 
 const FormPayment = () => {
-  const [price, setPrice] = useState<number>()
+  const [price, setPrice] = useState<number>(0)
   const cardNumberRef = useRef(false)
   // const { card_number = '', issuer } = useProfile
   const [courseId, setCourseId] = useState<string>('')
@@ -67,7 +67,7 @@ const FormPayment = () => {
   ])
   const route = useRouter()
 
-  const GetPrice = async () => {
+  /* const GetPrice = async () => {
     const query = route.query.cid
 
     useEffect(() => {
@@ -80,7 +80,7 @@ const FormPayment = () => {
               console.log(route)
             })
             .catch((err) => console.error(err))
-        : console.log(false) */
+        : console.log(false) 
       typeof query === 'string'
         ? axios
             .get(`https://deppback.herokuapp.com/course/${query}`)
@@ -96,10 +96,21 @@ const FormPayment = () => {
     }, [query])
   }
 
-  GetPrice()
+  GetPrice() */
 
   const GetStaltments = () => {
+    const query = route.query.cid
     useEffect(() => {
+      typeof query === 'string'
+        ? axios
+            .get(`https://deppback.herokuapp.com/course/${query}`)
+            .then((response) => {
+              setPrice(response.data[0].price)
+              setCourseId(response.data[0].course_id)
+              console.log(route)
+            })
+            .catch((err) => console.error(err))
+        : console.log('não')
       if (cardNumberRef.current) {
         if (card_number || (!card_number && issuer)) {
           // recebe o nome do cartão antecipado
@@ -116,7 +127,7 @@ const FormPayment = () => {
                 console.log('error:', response)
               }
             })
-            console.log(price)
+
             window.Mercadopago.getInstallments(
               { bin, amount: price },
               function (status, response) {
@@ -155,7 +166,7 @@ const FormPayment = () => {
       } else {
         cardNumberRef.current = true
       }
-    }, [card_number])
+    }, [card_number, query])
   }
 
   GetStaltments()
