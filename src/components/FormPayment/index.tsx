@@ -346,11 +346,15 @@ const FormPayment = () => {
       <S.Group>
         <S.Select>
           <select id="installments" onChange={(e) => selectFn(e.target)}>
-            {useInstallments.map(({ recommended_message, installments }, i) => (
-              <option key={i} value={installments}>
-                {recommended_message}
-              </option>
-            ))}
+            {price > 0
+              ? useInstallments.map(
+                  ({ recommended_message, installments }, i) => (
+                    <option key={i} value={installments}>
+                      {recommended_message}
+                    </option>
+                  )
+                )
+              : false}
           </select>
         </S.Select>
       </S.Group>
