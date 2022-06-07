@@ -67,11 +67,11 @@ const FormPayment = () => {
   ])
   const route = useRouter()
 
-  /* const GetPrice = async () => {
+  const GetPrice = async () => {
     const query = route.query.cid
 
     useEffect(() => {
-      /* query
+      query
         ? axios
             .get(`https://deppback.herokuapp.com/course/${query}`)
             .then((response) => {
@@ -80,7 +80,7 @@ const FormPayment = () => {
               console.log(route)
             })
             .catch((err) => console.error(err))
-        : console.log(false) 
+        : console.log(false)
       typeof query === 'string'
         ? axios
             .get(`https://deppback.herokuapp.com/course/${query}`)
@@ -96,7 +96,7 @@ const FormPayment = () => {
     }, [query])
   }
 
-  GetPrice() */
+  GetPrice()
 
   const GetStaltments = () => {
     const query = route.query.cid
