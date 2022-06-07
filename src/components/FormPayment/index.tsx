@@ -108,27 +108,29 @@ const FormPayment = () => {
                 console.log('error:', response)
               }
             })
-            console.log(price > 0 ? 'sim' : 'não')
-            window.Mercadopago.getInstallments(
-              { bin, amount: price },
 
-              function (status, response) {
-                if (status === 200) {
-                  setInstallments(
-                    response[0].payer_costs.map(
-                      ({ recommended_message, installments }) => {
-                        return {
-                          recommended_message,
-                          installments
-                        }
-                      }
-                    )
-                  )
-                } else {
-                  console.log('error:', response)
-                }
-              }
-            )
+            price > 0
+              ? window.Mercadopago.getInstallments(
+                  { bin, amount: price },
+
+                  function (status, response) {
+                    if (status === 200) {
+                      setInstallments(
+                        response[0].payer_costs.map(
+                          ({ recommended_message, installments }) => {
+                            return {
+                              recommended_message,
+                              installments
+                            }
+                          }
+                        )
+                      )
+                    } else {
+                      console.log('error:', response)
+                    }
+                  }
+                )
+              : 'não'
           } else {
             if (card_number.length < 6 && issuer) {
               setInstallments([
