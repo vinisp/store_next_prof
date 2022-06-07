@@ -36,7 +36,7 @@ type FormSubmitProps = (data: {
 }) => Promise<FormSubmitThenProps>
 
 const FormPayment = () => {
-  const [price, setPrice] = useState<number>(0)
+  const [price, setPrice] = useState<number>()
   const cardNumberRef = useRef(false)
   // const { card_number = '', issuer } = useProfile
   const [courseId, setCourseId] = useState<string>('')
