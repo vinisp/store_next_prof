@@ -132,7 +132,7 @@ const App = ({ dados }: any) => {
 App.getInitialProps = async () => {
   try {
     const response = await axios.get(
-      'http://localhost:5000/courses/test_user_42899768@testuser.com'
+      'http://mercado-profiteam.herokuapp.com/courses/test_user_42899768@testuser.com'
     )
     const courseList = response.data.body
     const course_id = courseList.map((e: any) => e.description)
