@@ -1,20 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import axios from 'axios'
 import { format } from 'date-fns'
+import styles from './Profile.module.css'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
     post: e.post_content,
     date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   }))
-  console.log(
-    PostsToRender.sort((a: any, b: any) => {
-      return new Date(b.date) - new Date(a.date)
-    })
-  )
+
+  PostsToRender.sort((a: any, b: any) => {
+    //@ts-ignore
+    return new Date(b.date) - new Date(a.date)
+  })
+
   return (
     <>
       <div
-        className="container"
+        className={`container ${styles.boxPost}`}
         style={{ minHeight: '90vh', marginTop: '2rem' }}
       >
         <div className="row">
