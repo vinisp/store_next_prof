@@ -18,7 +18,7 @@ const Profile = ({ dados }: any) => {
     <>
       <div
         className={`container ${styles.timeline} `}
-        style={{ minHeight: '90vh', marginTop: '2rem' }}
+        style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         {PostsToRender.map((e: any) => (
           <>
