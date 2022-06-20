@@ -17,52 +17,24 @@ const Profile = ({ dados }: any) => {
   return (
     <>
       <div
-        className={`container ${styles.boxPost}`}
+        className={`container ${styles.timeline} `}
         style={{ minHeight: '90vh', marginTop: '2rem' }}
       >
-        <div className="row">
-          <div className="col">
-            <div
-              className="row"
-              style={{
-                height: '80px',
-                width: '80px',
-                borderRadius: '50%',
-                backgroundColor: 'cyan',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              Avatar
-            </div>
-            <div
-              className="row"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                fontSize: '1.4rem'
-              }}
-            >
-              Nome
-            </div>
-          </div>
-        </div>
-
         {PostsToRender.map((e: any) => (
           <>
-            <div
-              className="container"
-              style={{ marginTop: '2rem', borderBottom: 'solid 1px silver' }}
-            >
-              <div className="row">
-                <div className="col">
-                  <div className="row">{e.post}</div>
-                  <div className="row">
-                    {format(new Date(e.date), 'dd/MM/yyyy p')}
-                  </div>
+            <div className={styles.timeline_entry}>
+              <div className={styles.timeline_stat}>
+                <div className={styles.timeline_icon}>
+                  <img
+                    src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                    alt="Profile picture"
+                  />
                 </div>
+                <div className={styles.timeline_time}>{e.date}</div>
+              </div>
+              <div className={styles.timeline_label}>
+                <h4 className="mar-no pad-btm">Título da Postagem</h4>
+                <p>{e.post}</p>
               </div>
             </div>
           </>
