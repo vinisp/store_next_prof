@@ -34,7 +34,7 @@ const Profile = ({ dados }: any) => {
               </div>
               <div className={styles.timeline_label}>
                 <h4 className="mar-no pad-btm">Título da Postagem</h4>
-                <p>{e.post}</p>
+                <p style={{ whiteSpace: 'pre-line' }}>{e.post}</p>
               </div>
             </div>
           </>
