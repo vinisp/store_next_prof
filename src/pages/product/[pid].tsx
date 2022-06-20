@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Img2 from 'assets/img/2.jpg'
 import Link from 'next/link'
