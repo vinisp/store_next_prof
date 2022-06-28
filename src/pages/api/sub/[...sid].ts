@@ -35,5 +35,5 @@ export default async function handler(
   //     res.setHeader('Allow', 'POST')
   //     res.status(405).end('Method Not Allowed')
   //   }
-  res.json({ content: sid })
+  res.json({ price: sid[0], email: sid[1] })
 }
