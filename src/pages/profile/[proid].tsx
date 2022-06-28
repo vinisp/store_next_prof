@@ -17,7 +17,7 @@ const Profile = ({ dados }: any) => {
 
   const route = useRouter()
 
-  console.log(route.query)
+  console.log(route.query.proid)
 
   return (
     <>
