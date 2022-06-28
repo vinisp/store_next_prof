@@ -19,6 +19,7 @@ const Profile = ({ dados }: any) => {
 
   console.log(route.query.proid)
 
+  const newLocal = 'price_1LFSVsF3qA6CuccdCsAJXlzq'
   return (
     <>
       <div
@@ -32,7 +33,7 @@ const Profile = ({ dados }: any) => {
               name=""
               id=""
               style={{ display: 'none' }}
-              value="price_1LFSVsF3qA6CuccdCsAJXlzq"
+              value={newLocal}
             />
             <button type="submit">Inscrever</button>
           </form>
