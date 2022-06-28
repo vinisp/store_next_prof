@@ -10,7 +10,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = getSession({ req })
+  const session = await getSession({ req })
   if (req.method === 'POST') {
     /*
     try {
@@ -37,5 +37,5 @@ export default async function handler(
     res.setHeader('Allow', 'POST')
     res.status(405).end('Method Not Allowed')
   }
-  return res.send({ message: 'error' })
+  return res.send({ session })
 }
