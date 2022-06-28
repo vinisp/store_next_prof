@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { format } from 'date-fns'
 import styles from './Profile.module.css'
+import Router from 'next/router'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
@@ -14,7 +15,9 @@ const Profile = ({ dados }: any) => {
     return new Date(b.date) - new Date(a.date)
   })
 
-  console.log(dados)
+  const route = Router
+
+  console.log(route.query)
 
   return (
     <>
@@ -23,7 +26,7 @@ const Profile = ({ dados }: any) => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <div>
-          <form action={`/api/subscribe`} method="POST">
+          <form action={`/api/sub/12`} method="POST">
             <button>Inscrever</button>
           </form>
         </div>
