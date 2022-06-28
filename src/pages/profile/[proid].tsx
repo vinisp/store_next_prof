@@ -14,6 +14,8 @@ const Profile = ({ dados }: any) => {
     return new Date(b.date) - new Date(a.date)
   })
 
+  console.log(dados)
+
   return (
     <>
       <div

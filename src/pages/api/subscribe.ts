@@ -15,7 +15,8 @@ export default async function handler(req: any, res: any) {
           {
             // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
             price: 'price_1LFSVsF3qA6CuccdCsAJXlzq',
-            quantity: 1
+            quantity: 1,
+            description: ``
           }
         ],
         mode: 'subscription',
@@ -24,7 +25,7 @@ export default async function handler(req: any, res: any) {
       })
       return res.redirect(303, session.url)
     } catch (err) {
-      return res.send({ message: err })
+      return res.send({ message: 'error 1' })
     }
   } else {
     res.setHeader('Allow', 'POST')
