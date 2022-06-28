@@ -3,6 +3,7 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
@@ -14,6 +15,9 @@ const Profile = ({ dados }: any) => {
     //@ts-ignore
     return new Date(b.date) - new Date(a.date)
   })
+
+  const { data: session } = useSession()
+  const userEmail = session?.user?.email as string
 
   const route = useRouter()
 
@@ -27,7 +31,7 @@ const Profile = ({ dados }: any) => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <div>
-          <form action={`/api/sub/${newLocal}`} method="POST">
+          <form action={`/api/sub/${newLocal}/${userEmail}`} method="POST">
             <button type="submit">Inscrever</button>
           </form>
         </div>

@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Stripe from 'stripe'
-import { useSession } from 'next-auth/react'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2020-08-27'
@@ -11,8 +10,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { sid } = req.query
-  const { data: session } = useSession()
-  const userEmail = session?.user?.email as string
 
   //   if (req.method === 'POST') {
   //     try {
@@ -38,5 +35,5 @@ export default async function handler(
   //     res.setHeader('Allow', 'POST')
   //     res.status(405).end('Method Not Allowed')
   //   }
-  res.end(` message: ${userEmail} `)
+  res.end(` message: ${(sid[0], sid[1])} `)
 }
