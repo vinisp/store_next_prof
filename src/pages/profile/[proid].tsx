@@ -27,7 +27,7 @@ const Profile = ({ dados }: any) => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <div>
-          <form action={`/api/sub/${newLocal}`} method="GET">
+          <form action={`/api/sub/${newLocal}`} method="POST">
             <button type="submit">Inscrever</button>
           </form>
         </div>
