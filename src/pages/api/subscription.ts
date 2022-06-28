@@ -36,5 +36,5 @@ export default async function handler(
     res.setHeader('Allow', 'POST')
     res.status(405).end('Method Not Allowed')
   }
-  return res.send({ elements: res })
+  return res.send(JSON.parse(req.body))
 }
