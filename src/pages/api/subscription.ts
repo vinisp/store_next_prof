@@ -1,5 +1,4 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
-import { useRouter } from 'next/router'
 
 import Stripe from 'stripe'
 
@@ -8,9 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 })
 
 export default async function handler(req: any, res: any) {
-  const route = useRouter()
-
-  console.log(route.query)
+  console.log(req.body)
   if (req.method === 'POST') {
     try {
       // Create Checkout Sessions from body params.
@@ -19,8 +16,7 @@ export default async function handler(req: any, res: any) {
           {
             // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
             price: 'price_1LFSVsF3qA6CuccdCsAJXlzq',
-            quantity: 1,
-            description: `${req.body.params}`
+            quantity: 1
           }
         ],
         mode: 'subscription',
