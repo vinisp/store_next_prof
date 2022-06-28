@@ -20,6 +20,11 @@ const Profile = ({ dados }: any) => {
         className={`container ${styles.timeline} `}
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
+        <div>
+          <form action={`/api/subscribe`} method="POST">
+            <button>Inscrever</button>
+          </form>
+        </div>
         {PostsToRender.map((e: any) => (
           <>
             <div className={styles.timeline_entry}>
