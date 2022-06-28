@@ -8,8 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
-  { query }: any
+  res: NextApiResponse
 ) {
   const session = await getSession({ req })
   if (req.method === 'POST') {
@@ -38,5 +37,5 @@ export default async function handler(
     res.setHeader('Allow', 'POST')
     res.status(405).end('Method Not Allowed')
   }
-  return res.send({ status: query.id })
+  return res.send({ req })
 }
