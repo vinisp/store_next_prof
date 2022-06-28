@@ -27,7 +27,14 @@ const Profile = ({ dados }: any) => {
       >
         <div>
           <form action={`/api/subscription`} method="POST">
-            <button>Inscrever</button>
+            <input
+              type="text"
+              name=""
+              id=""
+              style={{ display: 'none' }}
+              value="price_1LFSVsF3qA6CuccdCsAJXlzq"
+            />
+            <button type="submit">Inscrever</button>
           </form>
         </div>
         {PostsToRender.map((e: any) => (
