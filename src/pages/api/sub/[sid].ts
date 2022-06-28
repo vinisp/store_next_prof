@@ -1,5 +1,5 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 
 import Stripe from 'stripe'
 
@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 })
 
 export default async function handler(req: any, res: any) {
-  const route = Router
+  const route = useRouter()
 
   console.log(route.query)
   if (req.method === 'POST') {

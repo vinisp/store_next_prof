@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { format } from 'date-fns'
 import styles from './Profile.module.css'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
@@ -15,7 +15,7 @@ const Profile = ({ dados }: any) => {
     return new Date(b.date) - new Date(a.date)
   })
 
-  const route = Router
+  const route = useRouter()
 
   console.log(route.query)
 
