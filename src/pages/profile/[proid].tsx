@@ -23,7 +23,7 @@ const Profile = ({ dados }: any) => {
 
   console.log(route.query.proid)
 
-  const newLocal = 'price_1LFSVsF3qA6CuccdCsAJXlzq'
+  const newLocal = 'price_1LFiPAF3qA6CuccdgiSeIZMq'
   return (
     <>
       <div
