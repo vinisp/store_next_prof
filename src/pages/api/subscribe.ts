@@ -24,7 +24,7 @@ export default async function handler(req: any, res: any) {
       })
       return res.redirect(303, session.url)
     } catch (err) {
-      return res.send({ message: 'error' })
+      return res.send({ message: 'error1' })
     }
   } else {
     res.setHeader('Allow', 'POST')
