@@ -26,7 +26,7 @@ const Profile = ({ dados }: any) => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <div>
-          <form action={`/api/sub/${route.query.proid}`} method="POST">
+          <form action={`/api/subscription/${route.query.proid}`} method="POST">
             <button>Inscrever</button>
           </form>
         </div>

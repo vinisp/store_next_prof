@@ -20,7 +20,7 @@ export default async function handler(req: any, res: any) {
             // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
             price: 'price_1LFSVsF3qA6CuccdCsAJXlzq',
             quantity: 1,
-            description: `${route.query.sid}`
+            description: `${req.body.params}`
           }
         ],
         mode: 'subscription',
