@@ -12,7 +12,6 @@ export default async function handler(
 ) {
   const session = await getSession({ req })
   if (req.method === 'POST') {
-    /*
     try {
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create({
@@ -27,11 +26,11 @@ export default async function handler(
         success_url: `${req.headers.origin}/?success=true`,
         cancel_url: `${req.headers.origin}/?canceled=true`
       })
-      return res.redirect(303, session.url)
+      return res.redirect(303, session.url as string)
     } catch (err) {
       return res.send({ message: 'error 1' })
     }
-  */
+
     console.log(session)
   } else {
     res.setHeader('Allow', 'POST')
