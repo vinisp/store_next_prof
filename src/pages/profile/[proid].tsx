@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { hide } from '@popperjs/core'
+import { ColumnFour } from 'components/Card/styles'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
@@ -76,7 +77,6 @@ const Profile = ({ dados }: any) => {
     <>
       <div
         style={{
-          border: '1px solid black',
           display: 'flex',
           justifyContent: 'center',
           flexWrap: 'wrap',
@@ -87,16 +87,24 @@ const Profile = ({ dados }: any) => {
           <>
             <div
               style={{
-                border: '1px solid red',
                 borderRadius: '8px',
-                width: 'min(350px, 80vw)',
-                height: '400px'
+                width: 'min(250px, 80vw)',
+                height: '300px',
+                backgroundColor: 'darkgreen',
+                color: '#FFF'
               }}
             >
               <form action={`/api/sub/${e.priceid}/${userEmail}`} method="POST">
-                <h1>{e.planName}</h1>
+                <h1
+                  style={{
+                    color: '#FFF',
+                    fontWeight: '600'
+                  }}
+                >
+                  {e.planName}
+                </h1>
                 <h3>R$ {+e.price / 100}</h3>
-                <button className="btn btn-success">{e.planName}</button>
+                <button className="btn btn-success">Comprar</button>
               </form>
             </div>
           </>
