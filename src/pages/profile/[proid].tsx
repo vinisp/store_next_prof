@@ -4,12 +4,14 @@ import { format } from 'date-fns'
 import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
     post: e.post_content,
     date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   }))
+  const [plansData, setPlansData] = useState<any[]>()
 
   PostsToRender.sort((a: any, b: any) => {
     //@ts-ignore
@@ -21,9 +23,28 @@ const Profile = ({ dados }: any) => {
 
   const route = useRouter()
 
-  console.log(route.query.proid)
+  const query = route.query.proid
 
-  const newLocal = 'price_1LFiPAF3qA6CuccdgiSeIZMq'
+  function CheckProductId() {
+    useEffect(() => {
+      query
+        ? axios
+            .get(`http://localhost:3001/sub/prod/${query}`)
+            .then((response) =>
+              setPlansData(
+                response.data.product.data.map((e: any) => ({
+                  prod_id: e.id,
+                  planName: e.name
+                }))
+              )
+            )
+            .catch((err) => console.error(err))
+        : console.log('Não temos usuário')
+    }, [query])
+  }
+  CheckProductId()
+
+  const price = 'price_1LFiPAF3qA6CuccdgiSeIZMq'
   return (
     <>
       <div
@@ -31,9 +52,14 @@ const Profile = ({ dados }: any) => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <div>
-          <form action={`/api/sub/${newLocal}/${userEmail}`} method="POST">
+          <form action={`/api/sub/${price}/${userEmail}`} method="POST">
             <button type="submit">Inscrever</button>
           </form>
+          {plansData?.map((e) => (
+            <>
+              <div>{e.planName}</div>
+            </>
+          ))}
         </div>
         {PostsToRender.map((e: any) => (
           <>
