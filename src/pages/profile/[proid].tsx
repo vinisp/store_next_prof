@@ -60,7 +60,7 @@ const Profile = ({ dados }: any) => {
                       priceid: response.data.result[0].id,
                       prodid: e.prod_id,
                       planName: e.planName,
-                      price: e.data.result[0].unit_amount
+                      price: response.data.result[0].unit_amount
                     }
                   ])
                 )
@@ -79,9 +79,6 @@ const Profile = ({ dados }: any) => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <div>
-          <form action={`/api/sub/${price}/${userEmail}`} method="POST">
-            <button type="submit">Inscrever</button>
-          </form>
           {plansPrices.map((e: any) => (
             <>
               <div>
