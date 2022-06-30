@@ -59,7 +59,8 @@ const Profile = ({ dados }: any) => {
                     {
                       priceid: response.data.result[0].id,
                       prodid: e.prod_id,
-                      planName: e.planName
+                      planName: e.planName,
+                      price: e.data.result[0].unit_amount
                     }
                   ])
                 )
@@ -88,6 +89,8 @@ const Profile = ({ dados }: any) => {
                   action={`/api/sub/${e.priceid}/${userEmail}`}
                   method="POST"
                 >
+                  <h1>{e.planName}</h1>
+                  <h3>{e.price}</h3>
                   <button>{e.planName}</button>
                 </form>
               </div>
