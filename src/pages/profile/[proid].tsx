@@ -13,7 +13,6 @@ const Profile = ({ dados }: any) => {
   }))
   const [plansData, setPlansData] = useState<any[]>([])
   const [plansPrices, setPlansPrice] = useState<any[]>([])
-  const [price, setPrice] = useState('')
 
   PostsToRender.sort((a: any, b: any) => {
     //@ts-ignore
@@ -31,7 +30,7 @@ const Profile = ({ dados }: any) => {
     useEffect(() => {
       query
         ? axios
-            .get(`http://localhost:3001/sub/prod/${query}`)
+            .get(`https://deppback.herokuapp.com/sub/prod/${query}`)
             .then((response) =>
               setPlansData(
                 response.data.product.data.map((e: any) => ({
@@ -52,7 +51,7 @@ const Profile = ({ dados }: any) => {
         ? console.log(
             plansData.map((e) =>
               axios
-                .get(`http://localhost:3001/sub/${e.prod_id}`)
+                .get(`https://deppback.herokuapp.com/sub/${e.prod_id}`)
                 .then((response) =>
                   setPlansPrice((plansPrices) => [
                     ...plansPrices,
