@@ -81,21 +81,15 @@ const Profile = ({ dados }: any) => {
           <form action={`/api/sub/${price}/${userEmail}`} method="POST">
             <button type="submit">Inscrever</button>
           </form>
-          {plansData?.map((e) => (
+          {plansPrices.map((e: any) => (
             <>
               <div>
-                <button
-                  onClick={() => {
-                    const prodId = plansData?.filter(
-                      (el) => el.planName === e.planName
-                    )[0].prod_id
-                    axios
-                      .get(`http://localhost:3001/sub/${prodId}`)
-                      .then((response) => console.log(response.data.result))
-                  }}
+                <form
+                  action={`/api/sub/${e.priceid}/${userEmail}`}
+                  method="POST"
                 >
-                  {e.planName}
-                </button>
+                  <button>{e.planName}</button>
+                </form>
               </div>
             </>
           ))}
