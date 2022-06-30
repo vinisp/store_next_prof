@@ -75,26 +75,29 @@ const Profile = ({ dados }: any) => {
   return (
     <>
       <div
+        style={{
+          border: '1px solid black',
+          display: 'flex',
+          flexWrap: 'wrap',
+          padding: '1rem'
+        }}
+      >
+        {plansPrices.map((e: any) => (
+          <>
+            <div style={{ border: '1px solid red', borderRadius: '8px' }}>
+              <form action={`/api/sub/${e.priceid}/${userEmail}`} method="POST">
+                <h1>{e.planName}</h1>
+                <h3>{e.price}</h3>
+                <button>{e.planName}</button>
+              </form>
+            </div>
+          </>
+        ))}
+      </div>
+      <div
         className={`container ${styles.timeline} `}
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
-        <div>
-          {plansPrices.map((e: any) => (
-            <>
-              <div>
-                <form
-                  action={`/api/sub/${e.priceid}/${userEmail}`}
-                  method="POST"
-                >
-                  <h1>{e.planName}</h1>
-                  <h3>{e.price}</h3>
-                  <button>{e.planName}</button>
-                </form>
-              </div>
-            </>
-          ))}
-          <button onClick={() => console.log(plansPrices)}>Ver Planos</button>
-        </div>
         {PostsToRender.map((e: any) => (
           <>
             <div className={styles.timeline_entry}>
