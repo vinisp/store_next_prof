@@ -103,7 +103,8 @@ const Profile = ({ dados }: any) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  paddingTop: '2rem'
+                  justifyContent: 'space-evenly',
+                  order: e.planName === 'Trimestral' ? 2 : 0
                 }}
               >
                 <h1
