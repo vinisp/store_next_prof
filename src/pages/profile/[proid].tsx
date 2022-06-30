@@ -66,7 +66,7 @@ const Profile = ({ dados }: any) => {
                     )[0].prod_id
                     axios
                       .get(`http://localhost:3001/sub/${prodId}`)
-                      .then((response) => console.log(response.data))
+                      .then((response) => console.log(response.data[0].id))
                   }}
                 >
                   {e.planName}
