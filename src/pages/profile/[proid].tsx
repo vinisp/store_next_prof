@@ -57,7 +57,21 @@ const Profile = ({ dados }: any) => {
           </form>
           {plansData?.map((e) => (
             <>
-              <div>{e.planName}</div>
+              <div>
+                <button
+                  onClick={() => {
+                    console.log(e.planName)
+                    const prodId = plansData?.filter(
+                      (el) => el.planName === e.planName
+                    )[0].prod_id
+                    axios
+                      .get(`http://localhost:3001/sub/${prodId}`)
+                      .then((response) => console.log(response.data))
+                  }}
+                >
+                  {e.planName}
+                </button>
+              </div>
             </>
           ))}
         </div>
