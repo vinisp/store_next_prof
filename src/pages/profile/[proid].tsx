@@ -93,7 +93,12 @@ const Profile = ({ dados }: any) => {
                 height: '300px',
                 backgroundColor: 'darkgreen',
                 color: '#FFF',
-                order: e.planName === 'Semestral' ? 2 : 0
+                order:
+                  e.planName === 'Semestral'
+                    ? 2
+                    : 0 || e.planName === 'Mensal'
+                    ? -1
+                    : 0
               }}
             >
               <form
@@ -115,7 +120,10 @@ const Profile = ({ dados }: any) => {
                 >
                   {e.planName}
                 </h1>
-                <h3>R$ {+e.price / 100}</h3>
+                <h3>
+                  <sub>R$</sub>
+                  {+e.price / 100},<sub>00</sub>
+                </h3>
                 <button className="btn btn-success">Comprar</button>
               </form>
             </div>
