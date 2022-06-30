@@ -58,22 +58,18 @@ const Profile = ({ dados }: any) => {
           {plansData?.map((e) => (
             <>
               <div>
-                <form action={`/api/sub/${price}/${userEmail}`} method="POST">
-                  <button
-                    onClick={() => {
-                      const prodId = plansData?.filter(
-                        (el) => el.planName === e.planName
-                      )[0].prod_id
-                      axios
-                        .get(`http://localhost:3001/sub/${prodId}`)
-                        .then((response) =>
-                          setPrice(response.data.result[0].id)
-                        )
-                    }}
-                  >
-                    {e.planName}
-                  </button>
-                </form>
+                <button
+                  onClick={() => {
+                    const prodId = plansData?.filter(
+                      (el) => el.planName === e.planName
+                    )[0].prod_id
+                    axios
+                      .get(`http://localhost:3001/sub/${prodId}`)
+                      .then((response) => console.log(response.data.result))
+                  }}
+                >
+                  {e.planName}
+                </button>
               </div>
             </>
           ))}
