@@ -52,8 +52,9 @@ const Profile = ({ dados }: any) => {
         ? console.log(
             plansData.map((e) =>
               axios
-                .get(`http://localhost:3001/${e.prod_id}`)
+                .get(`http://localhost:3001/sub/${e.prod_id}`)
                 .then((response) => console.log(response.data))
+                .catch((err) => console.error(err))
             )
           )
         : console.log('não temos os dados do plano')
