@@ -94,17 +94,17 @@ const Profile = ({ dados }: any) => {
         ))}
       </div>
       <div className="col-lg-4 col-md-12 mb-4">
-        <div className="h-100 flip-card">
-          <div className="flip-card-inner">
-            <div className="flip-card-front">
-              <span className="price">$20</span>
+        <div className={`h-100 ${styles.flip_card}`}>
+          <div className={styles.flip_card_inner}>
+            <div className={styles.flip_card_front}>
+              <span className={styles.price}>$20</span>
               <br />
-              /month
+              month
               <br />
               <h2 className="card-title">Standard</h2>
               <small>Small Business</small>
             </div>
-            <div className="flip-card-back">
+            <div className={styles.flip_card_back}>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <svg
