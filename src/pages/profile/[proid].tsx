@@ -80,7 +80,8 @@ const Profile = ({ dados }: any) => {
           display: 'flex',
           justifyContent: 'center',
           flexWrap: 'wrap',
-          padding: '1rem'
+          padding: '1rem',
+          gap: '2rem'
         }}
       >
         {plansPrices.map((e: any) => (
@@ -94,7 +95,17 @@ const Profile = ({ dados }: any) => {
                 color: '#FFF'
               }}
             >
-              <form action={`/api/sub/${e.priceid}/${userEmail}`} method="POST">
+              <form
+                action={`/api/sub/${e.priceid}/${userEmail}`}
+                method="POST"
+                style={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  paddingTop: '2rem'
+                }}
+              >
                 <h1
                   className={styles.bolderFont}
                   style={{
