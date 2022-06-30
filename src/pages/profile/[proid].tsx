@@ -49,7 +49,13 @@ const Profile = ({ dados }: any) => {
   function CheckPriceId() {
     useEffect(() => {
       plansData?.length > 0
-        ? console.log(plansData)
+        ? console.log(
+            plansData.map((e) =>
+              axios
+                .get(`http://localhost:3001/${e.prod_id}`)
+                .then((response) => console.log(response.data))
+            )
+          )
         : console.log('não temos os dados do plano')
     }, [plansData])
   }
