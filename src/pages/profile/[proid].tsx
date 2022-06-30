@@ -120,10 +120,11 @@ const Profile = ({ dados }: any) => {
                 >
                   {e.planName}
                 </h1>
-                <h3>
-                  <sub>R$</sub>
-                  {+e.price / 100},<sub>00</sub>
-                </h3>
+                <div>
+                  <span style={{ fontSize: '.8rem' }}>R$</span>
+                  <span style={{ fontSize: '1rem' }}>{+e.price / 100}</span>,
+                  <span style={{ fontSize: '.8rem' }}>00</span>
+                </div>
                 <button className="btn btn-success">Comprar</button>
               </form>
             </div>
