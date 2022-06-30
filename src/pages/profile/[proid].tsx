@@ -73,6 +73,7 @@ const Profile = ({ dados }: any) => {
               </div>
             </>
           ))}
+          <button onClick={() => console.log(plansData)}>Ver Planos</button>
         </div>
         {PostsToRender.map((e: any) => (
           <>
