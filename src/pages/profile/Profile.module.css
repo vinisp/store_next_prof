@@ -329,3 +329,8 @@
   transform: rotateY(180deg);
   padding: 50px 0px;
 }
+
+
+.bolderFont {
+    font-weight: 600;
+}

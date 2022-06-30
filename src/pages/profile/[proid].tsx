@@ -96,9 +96,9 @@ const Profile = ({ dados }: any) => {
             >
               <form action={`/api/sub/${e.priceid}/${userEmail}`} method="POST">
                 <h1
+                  className={styles.bolderFont}
                   style={{
-                    color: '#FFF',
-                    fontWeight: '600'
+                    color: '#FFF'
                   }}
                 >
                   {e.planName}
