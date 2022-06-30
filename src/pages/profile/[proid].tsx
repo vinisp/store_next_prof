@@ -53,7 +53,13 @@ const Profile = ({ dados }: any) => {
             plansData.map((e) =>
               axios
                 .get(`http://localhost:3001/sub/${e.prod_id}`)
-                .then((response) => console.log(response.data, e))
+                .then((response) =>
+                  console.log({
+                    priceid: response.data.result[0].id,
+                    prodid: e.prod_id,
+                    planName: e.planName
+                  })
+                )
                 .catch((err) => console.error(err))
             )
           )
