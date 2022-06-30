@@ -54,11 +54,14 @@ const Profile = ({ dados }: any) => {
               axios
                 .get(`http://localhost:3001/sub/${e.prod_id}`)
                 .then((response) =>
-                  console.log({
-                    priceid: response.data.result[0].id,
-                    prodid: e.prod_id,
-                    planName: e.planName
-                  })
+                  setPlansPrice((plansPrices) => [
+                    ...plansPrices,
+                    {
+                      priceid: response.data.result[0].id,
+                      prodid: e.prod_id,
+                      planName: e.planName
+                    }
+                  ])
                 )
                 .catch((err) => console.error(err))
             )
@@ -96,7 +99,7 @@ const Profile = ({ dados }: any) => {
               </div>
             </>
           ))}
-          <button onClick={() => console.log(plansData)}>Ver Planos</button>
+          <button onClick={() => console.log(plansPrices)}>Ver Planos</button>
         </div>
         {PostsToRender.map((e: any) => (
           <>
