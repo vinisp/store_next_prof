@@ -92,7 +92,8 @@ const Profile = ({ dados }: any) => {
                 width: 'min(250px, 80vw)',
                 height: '300px',
                 backgroundColor: 'darkgreen',
-                color: '#FFF'
+                color: '#FFF',
+                order: e.planName === 'Semestral' ? 2 : 0
               }}
             >
               <form
@@ -103,8 +104,7 @@ const Profile = ({ dados }: any) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  justifyContent: 'space-evenly',
-                  order: e.planName === 'Trimestral' ? 2 : 0
+                  justifyContent: 'space-evenly'
                 }}
               >
                 <h1
