@@ -11,7 +11,8 @@ const Profile = ({ dados }: any) => {
     post: e.post_content,
     date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   }))
-  const [plansData, setPlansData] = useState<any[]>()
+  const [plansData, setPlansData] = useState<any[]>([])
+  const [plansPrices, setPlansPrice] = useState<any[]>([])
   const [price, setPrice] = useState('')
 
   PostsToRender.sort((a: any, b: any) => {
@@ -44,6 +45,15 @@ const Profile = ({ dados }: any) => {
     }, [query])
   }
   CheckProductId()
+
+  function CheckPriceId() {
+    useEffect(() => {
+      plansData?.length > 0
+        ? console.log(plansData)
+        : console.log('não temos os dados do plano')
+    }, [plansData])
+  }
+  CheckPriceId()
 
   return (
     <>
