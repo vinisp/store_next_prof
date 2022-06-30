@@ -12,6 +12,7 @@ const Profile = ({ dados }: any) => {
     date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   }))
   const [plansData, setPlansData] = useState<any[]>()
+  const [price, setPrice] = useState('')
 
   PostsToRender.sort((a: any, b: any) => {
     //@ts-ignore
@@ -44,7 +45,6 @@ const Profile = ({ dados }: any) => {
   }
   CheckProductId()
 
-  const price = 'price_1LFiPAF3qA6CuccdgiSeIZMq'
   return (
     <>
       <div
@@ -58,21 +58,22 @@ const Profile = ({ dados }: any) => {
           {plansData?.map((e) => (
             <>
               <div>
-                <button
-                  onClick={() => {
-                    console.log(e.planName)
-                    const prodId = plansData?.filter(
-                      (el) => el.planName === e.planName
-                    )[0].prod_id
-                    axios
-                      .get(`http://localhost:3001/sub/${prodId}`)
-                      .then((response) =>
-                        console.log(response.data.result[0].id)
-                      )
-                  }}
-                >
-                  {e.planName}
-                </button>
+                <form action={`/api/sub/${price}/${userEmail}`} method="POST">
+                  <button
+                    onClick={() => {
+                      const prodId = plansData?.filter(
+                        (el) => el.planName === e.planName
+                      )[0].prod_id
+                      axios
+                        .get(`http://localhost:3001/sub/${prodId}`)
+                        .then((response) =>
+                          setPrice(response.data.result[0].id)
+                        )
+                    }}
+                  >
+                    {e.planName}
+                  </button>
+                </form>
               </div>
             </>
           ))}
