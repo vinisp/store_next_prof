@@ -5,8 +5,6 @@ import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
-import { hide } from '@popperjs/core'
-import { ColumnFour } from 'components/Card/styles'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
@@ -83,7 +81,16 @@ const Profile = ({ dados }: any) => {
         }}
       >
         <div>
-          <h3 style={{ textAlign: 'center' }}>Assinaturas</h3>
+          <h3
+            style={{
+              textAlign: 'center',
+              textTransform: 'uppercase',
+              fontSize: '3rem',
+              borderBottom: '1px solid silver'
+            }}
+          >
+            Assinaturas
+          </h3>
         </div>
         <div
           style={{
@@ -97,12 +104,14 @@ const Profile = ({ dados }: any) => {
           {plansPrices.map((e: any) => (
             <>
               <div
+                className={styles.hoverCard}
                 style={{
                   borderRadius: '8px',
                   width: 'min(250px, 80vw)',
                   height: '300px',
                   backgroundColor: '#013220',
                   color: '#FFF',
+                  boxShadow: '7px 6px 4px -1px rgb(0 0 0 / 30%)',
                   order:
                     e.planName === 'Semestral'
                       ? 2
