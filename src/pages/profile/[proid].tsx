@@ -78,61 +78,74 @@ const Profile = ({ dados }: any) => {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          padding: '1rem',
-          gap: '2rem'
+          flexDirection: 'column',
+          alignItems: 'center'
         }}
       >
-        {plansPrices.map((e: any) => (
-          <>
-            <div
-              style={{
-                borderRadius: '8px',
-                width: 'min(250px, 80vw)',
-                height: '300px',
-                backgroundColor: '#013220',
-                color: '#FFF',
-                order:
-                  e.planName === 'Semestral'
-                    ? 2
-                    : 0 || e.planName === 'Mensal'
-                    ? -1
-                    : 0
-              }}
-            >
-              <form
-                action={`/api/sub/${e.priceid}/${userEmail}`}
-                method="POST"
+        <div>
+          <h3 style={{ textAlign: 'center' }}>Assinaturas</h3>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            padding: '1rem',
+            gap: '2rem'
+          }}
+        >
+          {plansPrices.map((e: any) => (
+            <>
+              <div
                 style={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'space-evenly'
+                  borderRadius: '8px',
+                  width: 'min(250px, 80vw)',
+                  height: '300px',
+                  backgroundColor: '#013220',
+                  color: '#FFF',
+                  order:
+                    e.planName === 'Semestral'
+                      ? 2
+                      : 0 || e.planName === 'Mensal'
+                      ? -1
+                      : 0
                 }}
               >
-                <h1
-                  className={styles.bolderFont}
+                <form
+                  action={`/api/sub/${e.priceid}/${userEmail}`}
+                  method="POST"
                   style={{
-                    color: '#FFF',
-                    textTransform: 'uppercase'
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'space-evenly'
                   }}
                 >
-                  {e.planName}
-                </h1>
-                <div>
-                  <span style={{ fontSize: '.8rem', fontWeight: 800 }}>R$</span>
-                  <span style={{ fontSize: '3rem', fontWeight: 800 }}>
-                    {+e.price / 100}
-                  </span>
-                  ,<span style={{ fontSize: '.8rem' }}>00</span>
-                </div>
-                <button className="btn btn-success">Comprar</button>
-              </form>
-            </div>
-          </>
-        ))}
+                  <h1
+                    className={styles.bolderFont}
+                    style={{
+                      color: '#FFF',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    {e.planName}
+                  </h1>
+                  <div>
+                    <span style={{ fontSize: '.8rem', fontWeight: 800 }}>
+                      R$
+                    </span>
+                    <span style={{ fontSize: '3rem', fontWeight: 800 }}>
+                      {+e.price / 100}
+                    </span>
+                    ,<span style={{ fontSize: '.8rem' }}>00</span>
+                  </div>
+                  <button className="btn btn-success">Comprar</button>
+                </form>
+              </div>
+            </>
+          ))}
+        </div>
       </div>
 
       <div
