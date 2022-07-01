@@ -91,7 +91,7 @@ const Profile = ({ dados }: any) => {
                 borderRadius: '8px',
                 width: 'min(250px, 80vw)',
                 height: '300px',
-                backgroundColor: '#0132209d',
+                backgroundColor: '#013220',
                 color: '#FFF',
                 order:
                   e.planName === 'Semestral'
@@ -122,7 +122,7 @@ const Profile = ({ dados }: any) => {
                   {e.planName}
                 </h1>
                 <div>
-                  <span style={{ fontSize: '.8rem' }}>R$</span>
+                  <span style={{ fontSize: '.8rem' }}>R$ </span>
                   <span style={{ fontSize: '1rem' }}>{+e.price / 100}</span>,
                   <span style={{ fontSize: '.8rem' }}>00</span>
                 </div>
