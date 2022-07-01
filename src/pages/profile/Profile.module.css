@@ -273,3 +273,11 @@
 .bolderFont {
     font-weight: 600;
 }
+
+.hoverCard{
+    transition: all 350ms ease-in-out;
+}
+
+.hoverCard:hover{
+    transform: translateY(-15px);
+}
