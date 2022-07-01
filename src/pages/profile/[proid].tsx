@@ -122,9 +122,11 @@ const Profile = ({ dados }: any) => {
                   {e.planName}
                 </h1>
                 <div>
-                  <span style={{ fontSize: '.8rem' }}>R$ </span>
-                  <span style={{ fontSize: '1rem' }}>{+e.price / 100}</span>,
-                  <span style={{ fontSize: '.8rem' }}>00</span>
+                  <span style={{ fontSize: '.8rem', fontWeight: 800 }}>R$</span>
+                  <span style={{ fontSize: '3rem', fontWeight: 800 }}>
+                    {+e.price / 100}
+                  </span>
+                  ,<span style={{ fontSize: '.8rem' }}>00</span>
                 </div>
                 <button className="btn btn-success">Comprar</button>
               </form>
