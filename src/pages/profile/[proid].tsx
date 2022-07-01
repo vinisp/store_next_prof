@@ -77,7 +77,8 @@ const Profile = ({ dados }: any) => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center'
+          alignItems: 'center',
+          marginTop: '2rem'
         }}
       >
         <div>
