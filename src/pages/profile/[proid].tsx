@@ -91,7 +91,7 @@ const Profile = ({ dados }: any) => {
                 borderRadius: '8px',
                 width: 'min(250px, 80vw)',
                 height: '300px',
-                backgroundColor: 'darkgreen',
+                backgroundColor: '#0132209d',
                 color: '#FFF',
                 order:
                   e.planName === 'Semestral'
@@ -115,7 +115,8 @@ const Profile = ({ dados }: any) => {
                 <h1
                   className={styles.bolderFont}
                   style={{
-                    color: '#FFF'
+                    color: '#FFF',
+                    textTransform: 'uppercase'
                   }}
                 >
                   {e.planName}
