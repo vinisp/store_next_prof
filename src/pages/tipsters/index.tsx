@@ -66,7 +66,7 @@ const App = ({ dados }: any) => {
               </a>
             </li>
             <li>
-              <a href="/tipsters" className="nav-link text-white">
+              <a href="#" className="nav-link text-white">
                 <svg className="bi me-2" width={16} height={16}>
                   <use xlinkHref="#table" />
                 </svg>
