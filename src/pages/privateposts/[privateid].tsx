@@ -90,7 +90,7 @@ const Profile = ({ dados }: any) => {
               borderBottom: '1px solid silver'
             }}
           >
-            Assinaturas
+            Dicas Exclusivas!
           </h3>
         </div>
         <div
@@ -101,61 +101,7 @@ const Profile = ({ dados }: any) => {
             padding: '1rem',
             gap: '2rem'
           }}
-        >
-          {plansPrices.map((e: any) => (
-            <>
-              <div
-                className={styles.hoverCard}
-                style={{
-                  borderRadius: '8px',
-                  width: 'min(250px, 80vw)',
-                  height: '300px',
-                  backgroundColor: '#013220',
-                  color: '#FFF',
-                  boxShadow: '7px 6px 4px -1px rgb(0 0 0 / 30%)',
-                  order:
-                    e.planName === 'Semestral'
-                      ? 2
-                      : 0 || e.planName === 'Mensal'
-                      ? -1
-                      : 0
-                }}
-              >
-                <form
-                  action={`/api/sub/${e.priceid}/${userEmail}`}
-                  method="POST"
-                  style={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'space-evenly'
-                  }}
-                >
-                  <h1
-                    className={styles.bolderFont}
-                    style={{
-                      color: '#FFF',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    {e.planName}
-                  </h1>
-                  <div>
-                    <span style={{ fontSize: '.8rem', fontWeight: 800 }}>
-                      R$
-                    </span>
-                    <span style={{ fontSize: '3rem', fontWeight: 800 }}>
-                      {+e.price / 100}
-                    </span>
-                    ,<span style={{ fontSize: '.8rem' }}>00</span>
-                  </div>
-                  <button className="btn btn-success">Comprar</button>
-                </form>
-              </div>
-            </>
-          ))}
-        </div>
+        ></div>
       </div>
 
       <div
