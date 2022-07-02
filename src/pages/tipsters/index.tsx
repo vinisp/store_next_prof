@@ -34,6 +34,16 @@ const App = ({ dados }: any) => {
 
   GetCourseName()
 
+  function GetListSubs() {
+    useEffect(() => {
+      axios
+        .get(`http://localhost:3001/sub/list/${session?.user?.email}`)
+        .then((response) => console.log(response.data))
+    }, [session])
+  }
+
+  GetListSubs()
+
   return (
     <>
       <div>
