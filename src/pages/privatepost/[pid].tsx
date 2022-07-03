@@ -23,7 +23,9 @@ const Privatepost = () => {
     useEffect(() => {
       session
         ? axios
-            .get(`http://localhost:3001/${query}/${session.user?.email}`)
+            .get(
+              `http://localhost:3001/private_post/${query}/${session.user?.email}`
+            )
             .then((response) => console.log(response.data))
         : console.log('2')
     }, [session])
