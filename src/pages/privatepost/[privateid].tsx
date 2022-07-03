@@ -61,6 +61,7 @@ const Privatepost = ({ dados }: any) => {
         className={`container ${styles.timeline} `}
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
+        <h1>Private Posts</h1>
         {PostsToRender.map((e: any) => (
           <>
             <div className={styles.timeline_entry}>
