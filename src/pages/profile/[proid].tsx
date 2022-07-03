@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
+    title: e.post_title,
     post: e.post_content,
     date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   }))
@@ -175,7 +176,7 @@ const Profile = ({ dados }: any) => {
                 <div className={styles.timeline_time}>{e.date}</div>
               </div>
               <div className={styles.timeline_label}>
-                <h4 className="mar-no pad-btm">Título da Postagem</h4>
+                <h4 className="mar-no pad-btm">{e.title}</h4>
                 <p style={{ whiteSpace: 'pre-line' }}>{e.post}</p>
               </div>
             </div>

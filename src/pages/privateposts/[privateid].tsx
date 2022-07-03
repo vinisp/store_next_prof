@@ -8,9 +8,12 @@ import { useEffect, useState } from 'react'
 
 const Profile = ({ dados }: any) => {
   const PostsToRender = dados.map((e: any) => ({
+    title: e.post_title,
     post: e.post_content,
     date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   }))
+
+  console.log(dados)
   const [plansData, setPlansData] = useState<any[]>([])
   const [plansPrices, setPlansPrice] = useState<any[]>([])
 
@@ -121,7 +124,7 @@ const Profile = ({ dados }: any) => {
                 <div className={styles.timeline_time}>{e.date}</div>
               </div>
               <div className={styles.timeline_label}>
-                <h4 className="mar-no pad-btm">Título da Postagem</h4>
+                <h4 className="mar-no pad-btm">{e.title}</h4>
                 <p style={{ whiteSpace: 'pre-line' }}>{e.post}</p>
               </div>
             </div>
@@ -133,9 +136,11 @@ const Profile = ({ dados }: any) => {
 }
 
 Profile.getInitialProps = async (context: any) => {
+  const { data: session } = useSession()
+  const userEmail = session?.user?.email as string
   try {
     const { data } = await axios.get(
-      `https://deppback.herokuapp.com/private_post/${context.query.privateid}`
+      `http://localhost:3001/private_post/${context.query.privateid}/${userEmail}`
     )
 
     return { dados: data }
