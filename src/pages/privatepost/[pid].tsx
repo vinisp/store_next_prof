@@ -5,24 +5,24 @@ import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
-const Privatepost = ({ dados }: any) => {
+const Privatepost = () => {
   const route = useRouter()
   const { data: session } = useSession()
 
-  const query = route.query.privateid
+  const query = route.query.pid
   const userEmail = session?.user?.email as string
-  const PostsToRender = dados.map((e: any) => ({
-    title: e.post_title,
-    post: e.post_content,
-    date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
-  }))
+  // const PostsToRender = dados.map((e: any) => ({
+  //   title: e.post_title,
+  //   post: e.post_content,
+  //   date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
+  // }))
 
-  console.log({ dados, query, userEmail })
+  console.log({ query, userEmail })
 
-  PostsToRender.sort((a: any, b: any) => {
-    //@ts-ignore
-    return new Date(b.date) - new Date(a.date)
-  })
+  // PostsToRender.sort((a: any, b: any) => {
+  //   //@ts-ignore
+  //   return new Date(b.date) - new Date(a.date)
+  // })
 
   return (
     <>
@@ -62,7 +62,7 @@ const Privatepost = ({ dados }: any) => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <h1>Private Posts</h1>
-        {PostsToRender.map((e: any) => (
+        {/* PostsToRender.map((e: any) => (
           <>
             <div className={styles.timeline_entry}>
               <div className={styles.timeline_stat}>
@@ -80,24 +80,24 @@ const Privatepost = ({ dados }: any) => {
               </div>
             </div>
           </>
-        ))}
+        )) */}
       </div>
     </>
   )
 }
 
-Privatepost.getInitialProps = async (context: any) => {
-  const { data: session } = useSession()
-  const userEmail = session?.user?.email as string
-  try {
-    const { data } = await axios.get(
-      `http://localhost:3001/private_post/${context.query.privateid}/${userEmail}`
-    )
+// Privatepost.getInitialProps = async (context: any) => {
+//   const { data: session } = useSession()
+//   const userEmail = session?.user?.email as string
+//   try {
+//     const { data } = await axios.get(
+//       `http://localhost:3001/private_post/${context.query.privateid}/${userEmail}`
+//     )
 
-    return { dados: data }
-  } catch (error) {
-    console.error(error)
-  }
-}
+//     return { dados: data }
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 export default Privatepost
