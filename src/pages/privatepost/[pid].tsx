@@ -4,20 +4,32 @@ import { format } from 'date-fns'
 import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import { useState, useEffect } from 'react'
 
 const Privatepost = () => {
   const route = useRouter()
-  const { data: session } = useSession()
 
   const query = route.query.pid
-  const userEmail = session?.user?.email as string
+
   // const PostsToRender = dados.map((e: any) => ({
   //   title: e.post_title,
   //   post: e.post_content,
   //   date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   // }))
 
-  console.log({ query, userEmail })
+  function getPrivatePosts() {
+    const { data: session } = useSession()
+
+    useEffect(() => {
+      session
+        ? axios
+            .get(`http://localhost:3001/${query}/${session.user?.email}`)
+            .then((response) => console.log(response.data))
+        : console.log('2')
+    }, [session])
+  }
+
+  getPrivatePosts()
 
   // PostsToRender.sort((a: any, b: any) => {
   //   //@ts-ignore
@@ -85,19 +97,5 @@ const Privatepost = () => {
     </>
   )
 }
-
-// Privatepost.getInitialProps = async (context: any) => {
-//   const { data: session } = useSession()
-//   const userEmail = session?.user?.email as string
-//   try {
-//     const { data } = await axios.get(
-//       `http://localhost:3001/private_post/${context.query.privateid}/${userEmail}`
-//     )
-
-//     return { dados: data }
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
 
 export default Privatepost
