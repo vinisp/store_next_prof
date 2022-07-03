@@ -4,75 +4,25 @@ import { format } from 'date-fns'
 import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-import { useEffect, useState } from 'react'
 
 const Profile = ({ dados }: any) => {
+  const route = useRouter()
+  const { data: session } = useSession()
+
+  const query = route.query.privateid
+  const userEmail = session?.user?.email as string
   const PostsToRender = dados.map((e: any) => ({
     title: e.post_title,
     post: e.post_content,
     date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
   }))
 
-  console.log(dados)
-  const [plansData, setPlansData] = useState<any[]>([])
-  const [plansPrices, setPlansPrice] = useState<any[]>([])
+  console.log({ dados, query, userEmail })
 
   PostsToRender.sort((a: any, b: any) => {
     //@ts-ignore
     return new Date(b.date) - new Date(a.date)
   })
-
-  const { data: session } = useSession()
-  const userEmail = session?.user?.email as string
-
-  const route = useRouter()
-
-  const query = route.query.proid
-
-  function CheckProductId() {
-    useEffect(() => {
-      query
-        ? axios
-            .get(`https://deppback.herokuapp.com/sub/prod/${query}`)
-            .then((response) =>
-              setPlansData(
-                response.data.product.data.map((e: any) => ({
-                  prod_id: e.id,
-                  planName: e.name
-                }))
-              )
-            )
-            .catch((err) => console.error(err))
-        : console.log('Não temos usuário')
-    }, [query])
-  }
-  CheckProductId()
-
-  function CheckPriceId() {
-    useEffect(() => {
-      plansData?.length > 0
-        ? console.log(
-            plansData.map((e) =>
-              axios
-                .get(`https://deppback.herokuapp.com/sub/${e.prod_id}`)
-                .then((response) =>
-                  setPlansPrice((plansPrices) => [
-                    ...plansPrices,
-                    {
-                      priceid: response.data.result[0].id,
-                      prodid: e.prod_id,
-                      planName: e.planName,
-                      price: response.data.result[0].unit_amount
-                    }
-                  ])
-                )
-                .catch((err) => console.error(err))
-            )
-          )
-        : console.log('não temos os dados do plano')
-    }, [plansData])
-  }
-  CheckPriceId()
 
   return (
     <>
