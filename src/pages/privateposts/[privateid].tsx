@@ -5,7 +5,7 @@ import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
-const Profile = ({ dados }: any) => {
+const PrivatePosts = ({ dados }: any) => {
   const route = useRouter()
   const { data: session } = useSession()
 
@@ -85,7 +85,7 @@ const Profile = ({ dados }: any) => {
   )
 }
 
-Profile.getInitialProps = async (context: any) => {
+PrivatePosts.getInitialProps = async (context: any) => {
   const { data: session } = useSession()
   const userEmail = session?.user?.email as string
   try {
@@ -99,4 +99,4 @@ Profile.getInitialProps = async (context: any) => {
   }
 }
 
-export default Profile
+export default PrivatePosts
