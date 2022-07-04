@@ -23,7 +23,7 @@ const Privatepost = () => {
               `http://localhost:3001/private_post/${query}/${session.user?.email}`
             )
             .then((response) => setPostsToRenderAPI(response.data))
-        : console.log('loading...')
+        : console.log('loading.......')
     }, [session])
   }
 
