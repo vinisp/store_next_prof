@@ -9,14 +9,9 @@ import { useState, useEffect } from 'react'
 const Privatepost = () => {
   const route = useRouter()
   const [PostsToRenderAPI, setPostsToRenderAPI] = useState<any[]>([])
+  const [PostsToRender, setPostsToRender] = useState<any[]>()
 
   const query = route.query.pid
-
-  // const PostsToRender = dados.map((e: any) => ({
-  //   title: e.post_title,
-  //   post: e.post_content,
-  //   date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
-  // }))
 
   function getPrivatePosts() {
     const { data: session } = useSession()
@@ -36,7 +31,15 @@ const Privatepost = () => {
 
   function OrganizePosts() {
     useEffect(() => {
-      PostsToRenderAPI.length > 0 ? console.log('sim') : console.log('não')
+      if (PostsToRenderAPI.length > 0) {
+        setPostsToRender(
+          PostsToRenderAPI.map((e: any) => ({
+            title: e.post_title,
+            post: e.post_content,
+            date: format(new Date(e.createdAt), 'dd MMM yyyy H:mm:s')
+          }))
+        )
+      }
     }, [PostsToRenderAPI])
   }
 
@@ -104,7 +107,7 @@ const Privatepost = () => {
             </div>
           </>
         )) */}
-        <button onClick={() => console.log(PostsToRenderAPI)}>
+        <button onClick={() => console.log(PostsToRender)}>
           Ver Postagens
         </button>
       </div>
