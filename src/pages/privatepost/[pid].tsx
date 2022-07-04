@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 const Privatepost = () => {
   const route = useRouter()
   const [PostsToRenderAPI, setPostsToRenderAPI] = useState<any[]>([])
-  const [PostsToRender, setPostsToRender] = useState<any[]>()
+  const [PostsToRender, setPostsToRender] = useState<any[]>([])
 
   const query = route.query.pid
 
@@ -88,7 +88,7 @@ const Privatepost = () => {
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
         <h1>Private Posts</h1>
-        {/* PostsToRender.map((e: any) => (
+        {PostsToRender.map((e: any) => (
           <>
             <div className={styles.timeline_entry}>
               <div className={styles.timeline_stat}>
@@ -106,7 +106,7 @@ const Privatepost = () => {
               </div>
             </div>
           </>
-        )) */}
+        ))}
         <button onClick={() => console.log(PostsToRender)}>
           Ver Postagens
         </button>
