@@ -29,7 +29,7 @@ const Privatepost = () => {
 
   getPrivatePosts()
 
-  function OrganizePosts() {
+  function GetPosts() {
     useEffect(() => {
       if (PostsToRenderAPI.length > 0) {
         setPostsToRender(
@@ -43,12 +43,25 @@ const Privatepost = () => {
     }, [PostsToRenderAPI])
   }
 
-  OrganizePosts()
+  GetPosts()
 
-  // PostsToRender.sort((a: any, b: any) => {
-  //   //@ts-ignore
-  //   return new Date(b.date) - new Date(a.date)
-  // })
+  PostsToRender.sort((a: any, b: any) => {
+    //@ts-ignore
+    return new Date(b.date) - new Date(a.date)
+  })
+
+  function OrganizePosts() {
+    useEffect(() => {
+      if (PostsToRenderAPI.length > 0) {
+        PostsToRender.sort((a: any, b: any) => {
+          //@ts-ignore
+          return new Date(b.date) - new Date(a.date)
+        })
+      }
+    }, [PostsToRender])
+  }
+
+  OrganizePosts()
 
   return (
     <>
