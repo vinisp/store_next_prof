@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 
 const Privatepost = () => {
   const route = useRouter()
-  const [PostsToRender, setPostsToRender] = useState<any[]>([])
+  const [PostsToRenderAPI, setPostsToRenderAPI] = useState<any[]>([])
 
   const query = route.query.pid
 
@@ -27,12 +27,20 @@ const Privatepost = () => {
             .get(
               `http://localhost:3001/private_post/${query}/${session.user?.email}`
             )
-            .then((response) => setPostsToRender(response.data))
-        : console.log('2')
+            .then((response) => setPostsToRenderAPI(response.data))
+        : console.log('loading...')
     }, [session])
   }
 
   getPrivatePosts()
+
+  function OrganizePosts() {
+    useEffect(() => {
+      PostsToRenderAPI.length > 0 ? console.log('sim') : console.log('não')
+    }, [PostsToRenderAPI])
+  }
+
+  OrganizePosts()
 
   // PostsToRender.sort((a: any, b: any) => {
   //   //@ts-ignore
@@ -96,7 +104,7 @@ const Privatepost = () => {
             </div>
           </>
         )) */}
-        <button onClick={() => console.log(PostsToRender)}>
+        <button onClick={() => console.log(PostsToRenderAPI)}>
           Ver Postagens
         </button>
       </div>
