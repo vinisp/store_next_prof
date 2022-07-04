@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react'
 
 const Privatepost = () => {
   const route = useRouter()
+  const [PostsToRender, setPostsToRender] = useState<any[]>([])
 
   const query = route.query.pid
 
@@ -26,7 +27,7 @@ const Privatepost = () => {
             .get(
               `http://localhost:3001/private_post/${query}/${session.user?.email}`
             )
-            .then((response) => console.log(response.data))
+            .then((response) => setPostsToRender(response.data))
         : console.log('2')
     }, [session])
   }
@@ -95,6 +96,9 @@ const Privatepost = () => {
             </div>
           </>
         )) */}
+        <button onClick={() => console.log(PostsToRender)}>
+          Ver Postagens
+        </button>
       </div>
     </>
   )
