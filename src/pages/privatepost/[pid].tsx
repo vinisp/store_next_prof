@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 
 const Privatepost = () => {
+  const APIURL = 'https://deppback.herokuapp.com'
   const route = useRouter()
   const [PostsToRenderAPI, setPostsToRenderAPI] = useState<any[]>([])
   const [PostsToRender, setPostsToRender] = useState<any[]>([])
@@ -19,9 +20,7 @@ const Privatepost = () => {
     useEffect(() => {
       session
         ? axios
-            .get(
-              `http://localhost:3001/private_post/${query}/${session.user?.email}`
-            )
+            .get(`${APIURL}/private_post/${query}/${session.user?.email}`)
             .then((response) => setPostsToRenderAPI(response.data))
         : console.log('loading.......')
     }, [session])
