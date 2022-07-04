@@ -100,7 +100,6 @@ const Privatepost = () => {
         className={`container ${styles.timeline} `}
         style={{ minHeight: '100vh', marginTop: '2rem' }}
       >
-        <h1>Private Posts</h1>
         {PostsToRender.map((e: any) => (
           <>
             <div className={styles.timeline_entry}>
@@ -120,9 +119,6 @@ const Privatepost = () => {
             </div>
           </>
         ))}
-        <button onClick={() => console.log(PostsToRender)}>
-          Ver Postagens
-        </button>
       </div>
     </>
   )
