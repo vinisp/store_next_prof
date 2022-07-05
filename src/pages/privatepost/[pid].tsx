@@ -96,7 +96,7 @@ const Privatepost = () => {
                       className="img-fluid img-thumbnail mt-4 mb-2"
                       style={{ width: '150px', zIndex: 1 }}
                     />
-                    <h5>Avaliação</h5>
+                    <h5 style={{ zIndex: 1 }}>Avaliação</h5>
                     <Rating
                       name="simple-controlled"
                       value={value}
