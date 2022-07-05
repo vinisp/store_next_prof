@@ -118,8 +118,8 @@ const Privatepost = () => {
                 >
                   <div className="d-flex justify-content-end text-center py-1">
                     <div>
-                      <p className="mb-1 h5">253</p>
-                      <p className="small text-muted mb-0">Photos</p>
+                      <p className="mb-1 h5">{PostsToRenderAPI.length}</p>
+                      <p className="small text-muted mb-0">Postagens</p>
                     </div>
                     <div className="px-3">
                       <p className="mb-1 h5">1026</p>
