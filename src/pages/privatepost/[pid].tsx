@@ -74,9 +74,13 @@ const Privatepost = () => {
           marginTop: '2rem'
         }}
       >
-        <div>
+        <div
+          style={{
+            width: 'min(1328px, 95vw)'
+          }}
+        >
           <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col col-lg-9 col-xl-7">
+            <div className="col col-lg-12 col-xl-12">
               <div className="card">
                 <div
                   className="rounded-top text-white d-flex flex-row"
@@ -92,18 +96,18 @@ const Privatepost = () => {
                       className="img-fluid img-thumbnail mt-4 mb-2"
                       style={{ width: '150px', zIndex: 1 }}
                     />
-                    <button
-                      type="button"
-                      className="btn btn-outline-dark"
-                      data-mdb-ripple-color="dark"
-                      style={{ zIndex: 1 }}
-                    >
-                      Edit profile
-                    </button>
+                    <h5>Avaliação</h5>
+                    <Rating
+                      name="simple-controlled"
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue)
+                      }}
+                    />
                   </div>
                   <div className="ms-3" style={{ marginTop: '130px' }}>
-                    <h5>Andy Horwitz</h5>
-                    <p>New York</p>
+                    <h5>Nome do Usuário</h5>
+                    <p>Dado Secundário</p>
                   </div>
                 </div>
                 <div
@@ -128,13 +132,6 @@ const Privatepost = () => {
               </div>
             </div>
           </div>
-          <Rating
-            name="simple-controlled"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue)
-            }}
-          />
         </div>
         <div>
           <h3
