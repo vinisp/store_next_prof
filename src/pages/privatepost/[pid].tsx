@@ -147,20 +147,11 @@ const Privatepost = () => {
             Dicas Exclusivas!
           </h3>
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            padding: '1rem',
-            gap: '2rem'
-          }}
-        ></div>
       </div>
 
       <div
         className={`container ${styles.timeline} `}
-        style={{ minHeight: '100vh', marginTop: '2rem' }}
+        style={{ minHeight: '100vh' }}
       >
         {PostsToRender.map((e: any) => (
           <>
