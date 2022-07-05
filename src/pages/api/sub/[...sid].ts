@@ -26,6 +26,9 @@ export default async function handler(
         ],
         mode: 'subscription',
         customer_email: email,
+        phone_number_collection: {
+          enabled: true
+        },
         success_url: `${req.headers.origin}/?success=true`,
         cancel_url: `${req.headers.origin}/?canceled=true`
       })
