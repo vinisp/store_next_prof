@@ -5,12 +5,14 @@ import styles from './Profile.module.css'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
+import Rating from '@mui/material/Rating'
 
 const Privatepost = () => {
   const APIURL = 'https://deppback.herokuapp.com'
   const route = useRouter()
   const [PostsToRenderAPI, setPostsToRenderAPI] = useState<any[]>([])
   const [PostsToRender, setPostsToRender] = useState<any[]>([])
+  const [value, setValue] = useState<number | null>(2)
 
   const query = route.query.pid
 
@@ -72,6 +74,15 @@ const Privatepost = () => {
           marginTop: '2rem'
         }}
       >
+        <div>
+          <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue)
+            }}
+          />
+        </div>
         <div>
           <h3
             style={{
