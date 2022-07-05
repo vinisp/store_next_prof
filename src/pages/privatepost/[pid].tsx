@@ -135,7 +135,7 @@ const Privatepost = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div style={{ marginTop: '2rem' }}>
           <h3
             style={{
               textAlign: 'center',
